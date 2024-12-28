@@ -40,7 +40,7 @@ This `transitionContext` object also contains a `containerView` that we will use
 
 To use our concrete implementation of `UIViewControllerAnimatedTransitioning` (let's call it `TransitionAnimator`), i.e. our animation controller, we will have our view controller(s) conform to `UINavigationControllerDelegate` and implement the following method:
 
-1. `navigationController(_:from:to:)`, which will return an instance of `our custom `UIViewControllerAnimatedTransitioning`, i.e. `TransitionAnimator`
+1. `navigationController(_:from:to:)`, which will return an instance of our custom `UIViewControllerAnimatedTransitioning`, i.e. `TransitionAnimator`
 
 This tells UIKit that we want to use our custom transition animation instead of the default `push` and `pop` animations when navigating between view controllers.
 
@@ -89,7 +89,7 @@ static func transform(parent: CGRect,
                       aspectFills targetRect: CGRect) -> Self
 ```
 
-Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination's view appears to grow to take up the entire screen, via manipulation of the mask.
+Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination view appears to grow to take up the entire screen, via manipulation of the mask.
 
 ## [untitled] transition demo
 
