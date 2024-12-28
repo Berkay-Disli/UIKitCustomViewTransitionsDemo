@@ -4,7 +4,7 @@ Implementing fluid, interactive transitions between view controllers with UIKit.
 
 ## Motivation
 
-In my opinion (and amongst other things), what sets apart a good app from a great one is the implementation of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (like a pinch to expand/dismiss views in [Dot](https://new.computer/)) or uses a shared, interruptible model (like when going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
+In my opinion, what sets apart a good app from a great one (amongst other things) is the implementation of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (like a pinch to expand/dismiss views in [Dot](https://new.computer/)) or uses a shared, interruptible model (like when going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
 
 This repo aims to replicate and build upon such transitions, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
 
