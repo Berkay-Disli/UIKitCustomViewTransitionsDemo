@@ -89,7 +89,7 @@ static func transform(parent: CGRect,
                       aspectFills targetRect: CGRect) -> Self
 ```
 
-Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progreses, the destination's view grows to take up the entire screen.
+Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination's view appears to grow to take up the entire screen, via manipulation of the mask.
 
 ## [untitled] transition demo
 
