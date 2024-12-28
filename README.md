@@ -31,7 +31,7 @@ This is a protocol in UIKit that allows you to create custom transitions between
 
 1. `transitionDuration(using:)` returns the duration of the entire transition animation
 2. `animateTransition(using:)` is where you define the actual animation sequence(s) which will be executed during the transition
-`
+
 And both methods have a `transitionContext` parameter of type `UIViewControllerContextTransitioning` that is crucial as the system will be providing all the necessary components through this parameter to use for our custom transitions. 
 
 This `transitionContext` object also contains a `containerView` that we will use to show whatever views we need to as the `from` view controller transitions to the `to` view controller. Think of it as the intermediary view. It starts off empty, and we can add any views we want, including the previously mentioned `to` and `from` views that already exist within the `transitionContext` object.
