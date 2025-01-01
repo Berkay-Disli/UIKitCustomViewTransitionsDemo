@@ -6,11 +6,11 @@ A gallery of various demos built with UIKit, demonstrating fluid, interactive tr
 
 ## Motivation
 
-SwiftUI is great for building out interfaces and apps quickly, but at the expense of feeling very similar amongst one another – standard controls, list views, toggles...
+SwiftUI is great for building out interfaces and apps quickly, but at the expense of feeling very similar amongst one another – standard controls, list views, toggles get tiring just as quickly... and surface-level design, no matter how polished, can only get you so far.
 
 In my opinion, what sets apart a good app from a great one (amongst other things) is the use of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (e.g. pinching to expand or dismiss entries in [Dot](https://new.computer/)) or using a shared, interruptible model (e.g. going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
 
-Apart from that, novel user interfaces like the one from [Path](https://brianlovin.com/app-dissection/path-ios) or [Mailbox](https://www.youtube.com/watch?v=FG-h8pDXfoE) also go a long way in making an app feel less box-standard than what floods the app store nowadays. Some might argue that they feel antiquated or less native-feeling, but that was the beauty of apps in the pre-iOS 7 era, where each app could really shine with their own personalities. We have much to learn from their "antiquated-ness".
+Apart from that, novel user interfaces like the ones from [Path](https://brianlovin.com/app-dissection/path-ios) or [Mailbox](https://www.youtube.com/watch?v=FG-h8pDXfoE) also go a long way in making an app feel less box-standard than what floods the app store nowadays. Transient pop-ups that sync with some state like scroll position, custom swipe actions whose buttons fan out in some elegant way... these add surprise and delight, and leave you wondering how they were made. Some might argue that these apps feel antiquated or less native-feeling as a result of these bespoke interfaces, but that was the beauty of apps in the pre-iOS 7 era, where each app could really shine with their own personalities. We have much to learn from their "antiquated-ness".
 
 This repo aims to study, replicate and build upon such transitions and interfaces, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
 
@@ -116,16 +116,32 @@ The only caveat is if the view is complex, this operation might take much longer
 
 ## TODOs
 
+### Instagram transition demo
+
 - [x] Fix `index beyond bounds` error
 - [ ] Make `pushAnimation()` interruptible (ref: [WWDC 2016: Advances in UIKit Animations and Transitions](https://devstreaming-cdn.apple.com/videos/wwdc/2016/216v55u6zpxizxkml6k/216/216_hd_advances_in_uikit_animations_and_transitions.mp4))
 - [ ] Implement Instagram-like vertical scrolling experience on `PhotoDetailView`
-- [ ] Twitter half side-bar transition
 - [ ] Support fetching remote images
 - [x] If at the top of `scrollView`, activate pan gesture for starting transition
-- [ ] Disallow multiple touch inputs during transitions
+
+### [untitled] transition demo
+
 - [x] Implement [untitled] album transition with slide over
+- [ ] Adjust curves on interactive transition
+
+### Facebook Paper transition demo
+
 - [x] Implement Facebook Paper card transition
 - [ ] Add interactive gesture to Facebook Paper cards
+
+### Other demos
+
+- [ ] Path timeline scroll
+- [ ] Twitter side-bar half transition
+
+### General
+
+- [ ] Disallow multiple touch inputs during transitions
 - [ ] Experiment with rubber banding individual cells in `UICollectionView`s
 
 ## Resources
