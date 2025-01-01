@@ -2,7 +2,7 @@
 
 A gallery of various demos built with UIKit, demonstrating fluid, interactive transitions between view controllers, novel user interfaces, and more.
 
-![image](https://github.com/user-attachments/assets/405e5e5e-72cc-4a90-827f-898819081e9a)
+![image](https://github.com/user-attachments/assets/a785e608-2a5f-4cb7-80a2-542a7902c98a)
 
 ## Motivation
 
