@@ -14,7 +14,8 @@ Apart from that, novel user interfaces like the ones from [Path](https://brianlo
 
 This repo aims to study, replicate and build upon such transitions and interfaces, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
 
-A note on custom view transitions: there are many parts that go into creating them (some boilerplate, some actual code), so I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
+> [!NOTE]
+> In particular, for custom view transitions, there are many parts that go into creating them (some boilerplate, some actual code), so I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
 
 ## Overview: custom view transitions
 
