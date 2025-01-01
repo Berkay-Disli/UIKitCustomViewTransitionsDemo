@@ -47,6 +47,15 @@
 		8401BC3D2D1F6EAC0030CD27 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC3C2D1F6EAB0030CD27 /* TransitionType.swift */; };
 		8401BC3F2D1FBB230030CD27 /* [untitled]GridViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC3E2D1FBB1E0030CD27 /* [untitled]GridViewHeader.swift */; };
 		8401BC432D1FC7220030CD27 /* [untitled]DetailViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC422D1FC71E0030CD27 /* [untitled]DetailViewHeader.swift */; };
+		8401BC492D20FB550030CD27 /* FBPaperHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC482D20FB550030CD27 /* FBPaperHomeView.swift */; };
+		8401BC4B2D20FBC80030CD27 /* FBPaperPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC4A2D20FBC80030CD27 /* FBPaperPageView.swift */; };
+		8401BC4D2D20FBF40030CD27 /* FBPaperHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC4C2D20FBF40030CD27 /* FBPaperHomeViewCell.swift */; };
+		8401BC522D2102F80030CD27 /* FBPaperTransitionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC502D2102F80030CD27 /* FBPaperTransitionAnimationController.swift */; };
+		8401BC532D2102F80030CD27 /* FBPaperTransitionInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC512D2102F80030CD27 /* FBPaperTransitionInteractionController.swift */; };
+		8401BC552D2120990030CD27 /* FBPaperTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */; };
+		8401BC572D2201F90030CD27 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC562D2201F00030CD27 /* BackButton.swift */; };
+		84C4B0E12D24BBBA00F76C86 /* IdentifiableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */; };
+		84C4B0E52D24D45200F76C86 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +102,15 @@
 		8401BC3C2D1F6EAB0030CD27 /* TransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
 		8401BC3E2D1FBB1E0030CD27 /* [untitled]GridViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[untitled]GridViewHeader.swift"; sourceTree = "<group>"; };
 		8401BC422D1FC71E0030CD27 /* [untitled]DetailViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[untitled]DetailViewHeader.swift"; sourceTree = "<group>"; };
+		8401BC482D20FB550030CD27 /* FBPaperHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperHomeView.swift; sourceTree = "<group>"; };
+		8401BC4A2D20FBC80030CD27 /* FBPaperPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperPageView.swift; sourceTree = "<group>"; };
+		8401BC4C2D20FBF40030CD27 /* FBPaperHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperHomeViewCell.swift; sourceTree = "<group>"; };
+		8401BC502D2102F80030CD27 /* FBPaperTransitionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperTransitionAnimationController.swift; sourceTree = "<group>"; };
+		8401BC512D2102F80030CD27 /* FBPaperTransitionInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperTransitionInteractionController.swift; sourceTree = "<group>"; };
+		8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperTransitioning.swift; sourceTree = "<group>"; };
+		8401BC562D2201F00030CD27 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableViewController.swift; sourceTree = "<group>"; };
+		84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +154,7 @@
 				8401BBFD2D1F3BFA0030CD27 /* Transition */,
 				8401BC402D1FBB930030CD27 /* InstagramTransition */,
 				8401BC412D1FBB9B0030CD27 /* [untitled]Transition */,
+				8401BC442D20F7510030CD27 /* FBPaperTransition */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -159,15 +178,17 @@
 			isa = PBXGroup;
 			children = (
 				8401BBE72D1F3BFA0030CD27 /* ClosureLayout */,
-				8401BBE82D1F3BFA0030CD27 /* Then.swift */,
-				8401BBEB2D1F3BFA0030CD27 /* UIApplication+Extensions.swift */,
-				8401BBE92D1F3BFA0030CD27 /* UIView+Extensions.swift */,
-				8401BBEA2D1F3BFA0030CD27 /* UICollectionReusableView+Extensions.swift */,
 				8401BBEC2D1F3BFA0030CD27 /* CGAffineTransform+Extensions.swift */,
+				8401BBEB2D1F3BFA0030CD27 /* UIApplication+Extensions.swift */,
+				8401BBEA2D1F3BFA0030CD27 /* UICollectionReusableView+Extensions.swift */,
 				8401BBED2D1F3BFA0030CD27 /* UICollectionView+Extensions.swift */,
+				84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */,
+				8401BBE92D1F3BFA0030CD27 /* UIView+Extensions.swift */,
 				8401BBEF2D1F3BFA0030CD27 /* CGRect+Extensions.swift */,
 				8401BBF02D1F3BFA0030CD27 /* CGSize+Extensions.swift */,
 				8401BBF12D1F3BFA0030CD27 /* PHAsset+Extensions.swift */,
+				8401BBE82D1F3BFA0030CD27 /* Then.swift */,
+				84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -193,6 +214,7 @@
 		8401BC062D1F3BFA0030CD27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8401BC562D2201F00030CD27 /* BackButton.swift */,
 				8401BC002D1F3BFA0030CD27 /* CacheableImageView */,
 			);
 			path = Views;
@@ -258,8 +280,8 @@
 		8401BC402D1FBB930030CD27 /* InstagramTransition */ = {
 			isa = PBXGroup;
 			children = (
-				8401BC2D2D1F4BAC0030CD27 /* Views */,
 				8401BC282D1F3D480030CD27 /* Transition */,
+				8401BC2D2D1F4BAC0030CD27 /* Views */,
 				8401BC2B2D1F4B930030CD27 /* ViewControllers */,
 			);
 			path = InstagramTransition;
@@ -268,11 +290,48 @@
 		8401BC412D1FBB9B0030CD27 /* [untitled]Transition */ = {
 			isa = PBXGroup;
 			children = (
-				8401BC302D1F4BC70030CD27 /* Views */,
 				8401BC2A2D1F3D660030CD27 /* Transition */,
+				8401BC302D1F4BC70030CD27 /* Views */,
 				8401BC2C2D1F4B9D0030CD27 /* ViewControllers */,
 			);
 			path = "[untitled]Transition";
+			sourceTree = "<group>";
+		};
+		8401BC442D20F7510030CD27 /* FBPaperTransition */ = {
+			isa = PBXGroup;
+			children = (
+				8401BC462D20F7620030CD27 /* Transition */,
+				8401BC452D20F75D0030CD27 /* Views */,
+				8401BC472D20F7650030CD27 /* ViewControllers */,
+			);
+			path = FBPaperTransition;
+			sourceTree = "<group>";
+		};
+		8401BC452D20F75D0030CD27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8401BC4C2D20FBF40030CD27 /* FBPaperHomeViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8401BC462D20F7620030CD27 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */,
+				8401BC502D2102F80030CD27 /* FBPaperTransitionAnimationController.swift */,
+				8401BC512D2102F80030CD27 /* FBPaperTransitionInteractionController.swift */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		8401BC472D20F7650030CD27 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8401BC482D20FB550030CD27 /* FBPaperHomeView.swift */,
+				8401BC4A2D20FBC80030CD27 /* FBPaperPageView.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,20 +414,26 @@
 				8401BC0B2D1F3BFA0030CD27 /* LayoutClosure.swift in Sources */,
 				8401BC0C2D1F3BFA0030CD27 /* UIApplication+Extensions.swift in Sources */,
 				8401BC0D2D1F3BFA0030CD27 /* LayoutDimension.swift in Sources */,
+				8401BC522D2102F80030CD27 /* FBPaperTransitionAnimationController.swift in Sources */,
+				8401BC532D2102F80030CD27 /* FBPaperTransitionInteractionController.swift in Sources */,
 				8401BC0E2D1F3BFA0030CD27 /* SharedTransitionAnimationController.swift in Sources */,
 				8401BC0F2D1F3BFA0030CD27 /* Then.swift in Sources */,
 				8401BC102D1F3BFA0030CD27 /* LayoutSizeDimension.swift in Sources */,
 				8401BC112D1F3BFA0030CD27 /* LayoutProxy.swift in Sources */,
+				84C4B0E52D24D45200F76C86 /* UIScreen+Extensions.swift in Sources */,
 				8401BC122D1F3BFA0030CD27 /* CGAffineTransform+Extensions.swift in Sources */,
 				8401BC132D1F3BFA0030CD27 /* SharedTransitionInteractionController.swift in Sources */,
 				8401BC142D1F3BFA0030CD27 /* LayoutOperators.swift in Sources */,
 				8401BC152D1F3BFA0030CD27 /* PHAsset+Extensions.swift in Sources */,
 				8401BC162D1F3BFA0030CD27 /* PhotoGridView.swift in Sources */,
+				84C4B0E12D24BBBA00F76C86 /* IdentifiableViewController.swift in Sources */,
+				8401BC572D2201F90030CD27 /* BackButton.swift in Sources */,
 				8401BC172D1F3BFA0030CD27 /* PhotoGridViewHeader.swift in Sources */,
 				8401BC382D1F64680030CD27 /* AlbumCell.swift in Sources */,
 				8401BC3D2D1F6EAC0030CD27 /* TransitionType.swift in Sources */,
 				8401BC182D1F3BFA0030CD27 /* CacheableImageView.swift in Sources */,
 				8401BC1A2D1F3BFA0030CD27 /* UICollectionReusableView+Extensions.swift in Sources */,
+				8401BC492D20FB550030CD27 /* FBPaperHomeView.swift in Sources */,
 				8401BC1B2D1F3BFA0030CD27 /* PhotoFooter.swift in Sources */,
 				8401BC362D1F63DF0030CD27 /* [untitled]TransitionAnimationController.swift in Sources */,
 				8401BC1C2D1F3BFA0030CD27 /* CGSize+Extensions.swift in Sources */,
@@ -379,10 +444,13 @@
 				8401BC342D1F62D40030CD27 /* [untitled]DetailView.swift in Sources */,
 				8401BC3F2D1FBB230030CD27 /* [untitled]GridViewHeader.swift in Sources */,
 				8401BC212D1F3BFA0030CD27 /* SharedTransitioning.swift in Sources */,
+				8401BC4B2D20FBC80030CD27 /* FBPaperPageView.swift in Sources */,
 				8401BC222D1F3BFA0030CD27 /* UIView+Extensions.swift in Sources */,
 				8401BC232D1F3BFA0030CD27 /* LayoutAnchor.swift in Sources */,
 				8401BC242D1F3BFA0030CD27 /* UIView+Fill.swift in Sources */,
+				8401BC4D2D20FBF40030CD27 /* FBPaperHomeViewCell.swift in Sources */,
 				8401BC432D1FC7220030CD27 /* [untitled]DetailViewHeader.swift in Sources */,
+				8401BC552D2120990030CD27 /* FBPaperTransitioning.swift in Sources */,
 				8401BC252D1F3BFA0030CD27 /* ImageCache.swift in Sources */,
 				8401BC262D1F3BFA0030CD27 /* PhotoCell.swift in Sources */,
 				8401BBDD2D1F39520030CD27 /* SceneDelegate.swift in Sources */,

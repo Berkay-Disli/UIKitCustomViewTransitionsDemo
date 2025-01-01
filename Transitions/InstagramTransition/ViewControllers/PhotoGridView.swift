@@ -1,7 +1,9 @@
 import UIKit
 import Photos
 
-class PhotoGridView: UIViewController {
+final class PhotoGridView: UIViewController, IdentifiableViewController {
+    var stringIdentifier: String = "PhotoGridView"
+    
     private enum Constants {
         static let numberOfCols = 4
         static let sectionInset: UIEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
@@ -15,6 +17,7 @@ class PhotoGridView: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Int, PHAsset>
     
     private let transitionAnimator = SharedTransitionAnimationController()
+    private let fbPaperTransitionAnimator = FBPaperTransitionAnimationController()
     private let header = PhotoGridViewHeader(title: "Photos")
     
     private lazy var layout = UICollectionViewFlowLayout().then {
@@ -133,15 +136,18 @@ class PhotoGridView: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
+        view.layer.cornerCurve = .continuous
+        
         setupHeader()
         setupCollectionView()
+        setupBackButton()
     }
     
     private func setupHeader() {
         header.then {
             view.addSubview($0)
         }.layout {
-            $0.top == view.safeAreaLayoutGuide.topAnchor
+            $0.top == view.safeAreaLayoutGuide.topAnchor + 12
             $0.leading == view.leadingAnchor
             $0.trailing == view.trailingAnchor
         }
@@ -155,6 +161,24 @@ class PhotoGridView: UIViewController {
             $0.trailing == view.trailingAnchor
             $0.top == header.bottomAnchor
             $0.bottom == view.bottomAnchor
+        }
+    }
+    
+    private var backButtonAction: UIAction {
+        UIAction(handler: { [weak self] _ in self?.navigationController?.popViewController(animated: true) })
+    }
+    
+    private func setupBackButton() {
+        let backButton = BackButton(blurStyle: .systemUltraThinMaterialDark)
+        backButton.backNavigation = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        backButton.then {
+            view.addSubview($0)
+        }.layout {
+            $0.leading == view.leadingAnchor + 20
+            $0.bottom == view.safeAreaLayoutGuide.bottomAnchor - 20
         }
     }
 }
@@ -255,6 +279,9 @@ extension PhotoGridView: UINavigationControllerDelegate {
         } else if toVC is Self, fromVC is PhotoDetailView {
             transitionAnimator.transition = .pop
             return transitionAnimator
+        } else if toVC is FBPaperHomeView, fromVC is Self {
+            fbPaperTransitionAnimator.transition = .pop
+            return fbPaperTransitionAnimator
         }
         
         // Use default animation otherwise
@@ -310,5 +337,11 @@ extension PhotoGridView: PHPhotoLibraryChangeObserver {
             self.fetchResult = changes.fetchResultAfterChanges
             updateCollectionView()
         }
+    }
+}
+
+extension PhotoGridView: FBPaperTransitioning {
+    var sharedView: UIView? {
+        return UIView()
     }
 }

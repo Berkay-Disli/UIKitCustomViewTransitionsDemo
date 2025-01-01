@@ -58,10 +58,10 @@ extension UIViewControllerContextTransitioning {
     ///
     func sharedView(forKey key: UITransitionContextViewControllerKey) -> UIView? {
         let viewController = viewController(forKey: key)
-        
         viewController?.view.layoutIfNeeded()
         
-        return (viewController as? SharedTransitioning)?.sharedView
+        let sharedView = (viewController as? SharedTransitioning)?.sharedView
+        return sharedView
     }
 }
 
@@ -89,7 +89,7 @@ extension SharedTransitionConfig {
         .init(
             duration: 0.25,
             curve: CAMediaTimingFunction(controlPoints: 0.25, 0.46, 0.45, 0.94),
-            maskCornerRadius: 44,
+            maskCornerRadius: UIScreen.main.displayCornerRadius,
             overlayOpacity: 0.5,
             placeholderColor: .white
         )
@@ -100,7 +100,7 @@ extension SharedTransitionConfig {
         .init(
             duration: 0.25,
             curve: CAMediaTimingFunction(controlPoints: 0.25, 0.46, 0.45, 0.94),
-            maskCornerRadius: 44,
+            maskCornerRadius: UIScreen.main.displayCornerRadius,
             overlayOpacity: 0.5,
             interactionScaleFactor: 0.6,
             placeholderColor: .white

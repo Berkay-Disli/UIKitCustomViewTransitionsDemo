@@ -1,6 +1,8 @@
 import UIKit
 
-class UntitledGridView: UIViewController {
+final class UntitledGridView: UIViewController, IdentifiableViewController {
+    var stringIdentifier: String = "UntitledGridView"
+    
     private enum Constants {
         static let numberOfCols = 2
         static let sectionInset: UIEdgeInsets = .init(top: 72, left: 32,
@@ -10,6 +12,7 @@ class UntitledGridView: UIViewController {
     }
     
     private let transitionAnimator = UntitledTransitionAnimationController()
+    private let fbPaperTransitionAnimator = FBPaperTransitionAnimationController()
     private let header = UntitledGridViewHeader(title: "[untitled]")
     private var selectedIndexPath: IndexPath?
     private var albumImages: [UIImage] = [
@@ -52,8 +55,12 @@ class UntitledGridView: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .untitledGrey
+        view.layer.cornerCurve = .continuous
+        view.layer.masksToBounds = true
+        
         setupCollectionView()
         setupHeader()
+        setupBackButton()
     }
     
     private func setupHeader() {
@@ -76,6 +83,24 @@ class UntitledGridView: UIViewController {
             $0.trailing == view.trailingAnchor
             $0.top == view.topAnchor
             $0.bottom == view.bottomAnchor
+        }
+    }
+    
+    private var backButtonAction: UIAction {
+        UIAction(handler: { [weak self] _ in self?.navigationController?.popViewController(animated: true) })
+    }
+    
+    private func setupBackButton() {
+        let backButton = BackButton(customTintColor: .white)
+        backButton.backNavigation = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        
+        backButton.then {
+            view.addSubview($0)
+        }.layout {
+            $0.leading == view.leadingAnchor + 20
+            $0.bottom == view.safeAreaLayoutGuide.bottomAnchor - 20
         }
     }
 }
@@ -138,13 +163,16 @@ extension UntitledGridView: UINavigationControllerDelegate {
         } else if toVC is Self, fromVC is UntitledDetailView {
             transitionAnimator.transition = .pop
             return transitionAnimator
+        } else if toVC is FBPaperHomeView, fromVC is Self {
+            fbPaperTransitionAnimator.transition = .pop
+            return fbPaperTransitionAnimator
         }
         
         return nil
     }
 }
 
-extension UntitledGridView: SharedTransitioning {
+extension UntitledGridView: SharedTransitioning, FBPaperTransitioning {
     var sharedFrame: CGRect {
         guard let selectedIndexPath,
               let cell = collectionView.cellForItem(at: selectedIndexPath),
@@ -156,7 +184,9 @@ extension UntitledGridView: SharedTransitioning {
         guard let selectedIndexPath,
               let cell = collectionView.cellForItem(at: selectedIndexPath) as? AlbumCell else
         {
-            return nil
+            // We don't return nil here to support FBPaperTransitioning
+            // TODO: Clean up
+            return UIView()
         }
         
         // Recreate a snapshot of the cell instead of returning the cell itself
@@ -180,4 +210,3 @@ extension UntitledGridView: SharedTransitioning {
                                                  withPadding: 120, animated: false)
     }
 }
-

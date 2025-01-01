@@ -1,7 +1,7 @@
 import UIKit
 import Photos
 
-class PhotoDetailView: UIViewController {
+final class PhotoDetailView: UIViewController {
     private var image: UIImage
     private var asset: PHAsset
     
@@ -89,7 +89,7 @@ extension PhotoDetailView {
                 self?.navigationController?.popViewController(animated: true)
             }
         }.layout {
-            $0.top == view.safeAreaLayoutGuide.topAnchor
+            $0.top == view.safeAreaLayoutGuide.topAnchor + 12
             $0.leading == view.leadingAnchor
             $0.trailing == view.trailingAnchor
         }

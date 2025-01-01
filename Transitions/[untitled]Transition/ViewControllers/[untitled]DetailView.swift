@@ -1,8 +1,8 @@
 import UIKit
 
-class UntitledDetailView: UIViewController {
+final class UntitledDetailView: UIViewController {
     private enum Constants {
-        static let scrollViewInset: UIEdgeInsets = .init(top: 84, left: 20,
+        static let scrollViewInset: UIEdgeInsets = .init(top: 78, left: 20,
                                                          bottom: 20, right: 20)
     }
     
@@ -187,7 +187,7 @@ extension UntitledDetailView: UIGestureRecognizerDelegate {
     }
 }
 
-extension UntitledDetailView: SharedTransitioning {
+extension UntitledDetailView: SharedTransitioning, FBPaperTransitioning {
     var sharedFrame: CGRect {
         imageView.frameInWindow ?? .zero
     }
