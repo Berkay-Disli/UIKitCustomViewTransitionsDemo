@@ -17,7 +17,7 @@ This repo aims to study, replicate and build upon such transitions and interface
 > [!NOTE]
 > In particular, for custom view transitions, there are many parts that go into creating them (some boilerplate, some actual code), so I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
 
-## Overview: custom view transitions
+## Overview
 
 These are the main ingredients that go into implementing custom, interactive transitions:
 
@@ -153,5 +153,5 @@ The only caveat is if the view is complex, this operation might take much longer
 - [A complex push/pop animation](https://devsign.co/notes/navigation-transitions-iii)
 - [View controller life cycle](https://medium.com/good-morning-swift/ios-view-controller-life-cycle-2a0f02e74ff5)
 - [Spotify sheet transition](https://www.onswiftwings.com/posts/interactive-animations/)
-- [Understanding `UIViewControllerAnimatedTransitioning](https://medium.com/@cleanrun/trying-to-understand-uiviewcontrolleranimatedtransitioning-5abff56c5f93)
+- [Understanding `UIViewControllerAnimatedTransitioning`](https://medium.com/@cleanrun/trying-to-understand-uiviewcontrolleranimatedtransitioning-5abff56c5f93)
 - [Wrap your head around custom view controller transitions](https://danielgauthier.me/2020/02/19/indie-4.html)
