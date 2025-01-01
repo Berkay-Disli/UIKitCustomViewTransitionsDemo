@@ -2,17 +2,15 @@
 
 Implementing fluid, interactive transitions between view controllers with UIKit.
 
+![image](https://github.com/user-attachments/assets/405e5e5e-72cc-4a90-827f-898819081e9a)
+
 ## Motivation
 
-In my opinion, what sets apart a good app from a great one (amongst other things) is the implementation of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (like a pinch to expand/dismiss views in [Dot](https://new.computer/)) or uses a shared, interruptible model (like when going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
+In my opinion, what sets apart a good app from a great one (amongst other things) is the use of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (e.g. pinching to expand or dismiss entries in [Dot](https://new.computer/)) or using a shared, interruptible model (e.g. going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
 
-This repo aims to replicate and build upon such transitions, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
+This repo aims to study, replicate and build upon such transitions, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
 
 Since there are so many parts to creating custom UIKit transitions (some boilerplate, some actual code), I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
-
-## Pre-requisites
-
-I found that already having experience with Swift and SwiftUI helps a lot, as well a basic understanding of `UIViewController` life cycles, delegates and protocols.
 
 ## Overview
 
@@ -22,12 +20,12 @@ These are the main ingredients that go into implementing custom, interactive tra
 - `UINavigationControllerDelegate`: tells the system that you want to supply custom transitions for view controller **pushes** and **pops** (like going between a grid view and a detail view).
 - `UIViewControllerAnimatedTransitioning`: think of this as an **animation controller**. During transitions, UIKit will call our animation controller with the necessary context, allowing us to execute our custom animations instead of the default ones.
 - `UIViewControllerInteractiveTransitioning`: think of this as an **interactive animation controller**. If implemented alongside `UIViewControllerAnimatedTransitioning` and configured appropriately, this will enable interruptible transitions that work alongside the custom, non-interactive animations.
-- `UIPercentDrivenInteractiveTransition`: an object that drives an interactive transition. This enables gesture-driven navigations like swipe to go back. The default implementation would utilize the existing transitions defined in `UIViewControllerAnimatedTransitioning`.
-- `UIViewControllerContextTransitioning`: passed as a parameter to the required methods of `UIViewControllerAnimatedTransitioning`, this context contains information about both the presenting and presented view controller, and (if extended and conformed to by our view controllers) can hold other information that is useful for our custom transition(s).
+- `UIPercentDrivenInteractiveTransition`: an object that drives an interactive transition. This enables gesture-driven navigations like swiping to go back. The default implementation utilizes the existing custom transition defined in `UIViewControllerAnimatedTransitioning`.
+- `UIViewControllerContextTransitioning`: passed as a parameter to the required methods of `UIViewControllerAnimatedTransitioning`, this context contains information about both the presenting and presented view controller, and (if extended and conformed to by our view controllers) can hold other information that is useful for our custom transitions.
 
 ## `UIViewControllerAnimatedTransitioning`
 
-This is a protocol in UIKit that allows you to create custom transitions between view controllers. In other words, it contains the logic for the animation (interactive or not) that occurs during the transition. It has two required methods to implement:
+This is the main protocol in UIKit that allows you to create custom transitions between view controllers. In other words, it contains the logic for the animation (interactive or not) that occurs during the transition. It has two required methods to implement:
 
 1. `transitionDuration(using:)` returns the duration of the entire transition animation
 2. `animateTransition(using:)` is where you define the actual animation sequence(s) which will be executed during the transition
@@ -38,13 +36,13 @@ This `transitionContext` object also contains a `containerView` that we will use
 
 ## `UINavigationControllerDelegate`
 
-To use our concrete implementation of `UIViewControllerAnimatedTransitioning` (let's call it `TransitionAnimator`), i.e. our animation controller, we will have our view controller(s) conform to `UINavigationControllerDelegate` and implement the following method:
+To use our concrete implementation of `UIViewControllerAnimatedTransitioning`, i.e. our animation controller, we will have our view controller(s) conform to `UINavigationControllerDelegate` and implement the following method:
 
-1. `navigationController(_:from:to:)`, which will return an instance of our custom `UIViewControllerAnimatedTransitioning`, i.e. `TransitionAnimator`
+1. `navigationController(_:from:to:)`, which will return an instance of our custom `UIViewControllerAnimatedTransitioning`
 
 This tells UIKit that we want to use our custom transition animation instead of the default `push` and `pop` animations when navigating between view controllers.
 
-Alternatively, we can have `TransitionAnimator` be the one conforming to `UINavigationControllerDelegate`, which will have to implement the method above. Then, we set our view controller's delegate to `TransitionAnimator`. The following describes the pros and cons of these two approaches.
+Alternatively, we can have this animation controller (let's call it `TransitionAnimator`) be the one conforming to `UINavigationControllerDelegate`, which will have to implement the method above. Then, we set our view controller's delegate to `TransitionAnimator`. The following describes the pros and cons of these two approaches.
 
 ### View controller conforming to `UINavigationControllerDelegate`:
 
@@ -75,25 +73,42 @@ If you want to implement custom but still simple transition animations, like a s
 
 If the transition logic is tightly coupled with the view controllers' internal state and behavior, e.g. the transition requires knowledge of which `UICollectionViewCell` was tapped or the frame of the view you want to have animate between the two view controllers, then the *first* approach is more appropriate.
 
-## Instagram transition demo
+## Demos
+
+This section provides light documentation of the transition demos implemented in the project, in terms of the techniques and approaches used to achieve each effect.
+
+### Facebook Paper transition demo
+
+This demo is the main hub for all the other transitions, and is what you see when you first open the app. It aims to replicate the expanding and shrinking transition of stories. A horizontally scrolling `UICollectionView` with a constrained height is used, and the cells contained within are all scaled down by `0.4` with respect to the device's screen size. 
+
+During the transition, we map the destination view to the cell that was selected both in terms of size and position, and from there we animate the growth of both the cell and destination view in tandem to fill up the screen, also adjusting the `contentOffset` of the collection view as the transition progresses so that it aligns perfectly to the center of the screen.
+
+For more details on how this is achieved, look at `FBPaperTransitionAnimationController.swift`, specifically the `pushAnimation()` and `popAnimation()` methods.
+
+> [!NOTE]
+> The current implementation leaves out the interactive drag gesture, which will be worked on in the near future.
+
+### Instagram transition demo
 
 This demo replicates the transition behavior when going from a post on a profile to the detailed post view, where the image appears to expand into the new screen. It utilizes a custom transition and transformations to pull off – please see the detailed comments in `CGAffineTransform+Extensions.swift` for more info on this, in particular the following methods:
 
 ```swift
 static func transform(parent: CGRect,
                       suchThatChild child: CGRect,
-                      matches targetRect: CGRect) -> Self
+                      matches targetRect: CGRect) -> Self { ... }
                       
 static func transform(parent: CGRect,
                       suchThatChild child: CGRect,
-                      aspectFills targetRect: CGRect) -> Self
+                      aspectFills targetRect: CGRect) -> Self { ... }
 ```
 
 Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination view appears to grow to take up the entire screen, via manipulation of the mask.
 
-## [untitled] transition demo
+### [untitled] transition demo
 
-It is crucial that the `sharedView` that both view controllers implement are **copies** instead of references, since it becomes **much easier** to reason about and manipulate them for our custom transitions. Otherwise, we would have to involve convoluted logic to manage and restore states before, during and after the transition. With copies, we can easily create and destroy them on demand with little overhead. The only caveat is if the view is complex, this operation might take much longer. The alternative is to manipulate the source and destination views themselves using clever tricks like masks, as is the case with the Instagram transition demo.
+It is crucial that the `sharedView` that both view controllers implement are **copies** instead of references, since it becomes **much easier** to reason about and manipulate them for our custom transitions. Otherwise, we would have to involve convoluted logic to manage and restore states before, during and after the transition. With copies, we can easily create and destroy them on demand with little overhead. 
+
+The only caveat is if the view is complex, this operation might take much longer. The alternative is to manipulate the source and destination views themselves using clever tricks like masks, as is the case with the Instagram transition demo.
 
 ## TODOs
 
@@ -105,7 +120,8 @@ It is crucial that the `sharedView` that both view controllers implement are **c
 - [x] If at the top of `scrollView`, activate pan gesture for starting transition
 - [ ] Disallow multiple touch inputs during transitions
 - [x] Implement [untitled] album transition with slide over
-- [ ] Implement Facebook Paper card transition
+- [x] Implement Facebook Paper card transition
+- [ ] Add interactive gesture to Facebook Paper cards
 - [ ] Experiment with rubber banding individual cells in `UICollectionView`s
 
 ## Resources
