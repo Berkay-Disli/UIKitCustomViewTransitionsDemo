@@ -39,10 +39,8 @@ extension UntitledTransitionAnimationController {
         // Setup duplicate album art view for transitioning
         context.containerView.addSubview(fromSharedView)
         
-        let fromTransform: CGAffineTransform = .init(translationX: -UIScreen.main.bounds.width,
-                                                     y: 0)
-        let toTransform: CGAffineTransform = .init(translationX: UIScreen.main.bounds.width,
-                                                   y: 0)
+        let fromTransform: CGAffineTransform = .init(translationX: -GlobalConstants.screenW, y: 0)
+        let toTransform: CGAffineTransform = .init(translationX: GlobalConstants.screenW, y: 0)
         toView.transform = toTransform
         
         let fromPlaceholder = UIView().then {
@@ -104,13 +102,11 @@ extension UntitledTransitionAnimationController {
         // Setup duplicate album art view for transitioning
         context.containerView.addSubview(fromSharedView)
         
-        let toTransform: CGAffineTransform = .init(translationX: -UIScreen.main.bounds.width,
-                                                   y: 0)
+        let toTransform: CGAffineTransform = .init(translationX: -GlobalConstants.screenW, y: 0)
         toView.transform = toTransform
         toView.layer.opacity = 0
         
-        let fromTransform: CGAffineTransform = .init(translationX: UIScreen.main.bounds.width,
-                                                     y: 0)
+        let fromTransform: CGAffineTransform = .init(translationX: GlobalConstants.screenW, y: 0)
         
         let fromPlaceholder = UIView().then {
             $0.backgroundColor = config.placeholderColor

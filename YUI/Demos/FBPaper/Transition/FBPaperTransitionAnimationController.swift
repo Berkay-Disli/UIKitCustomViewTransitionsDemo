@@ -28,9 +28,6 @@ extension FBPaperTransitionAnimationController {
             context.completeTransition(false)
             return
         }
-        
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
 
         let collectionView = fromViewController.collectionView
         let selectedIndexPath = fromViewController.selectedIndexPath ?? IndexPath(item: 0, section: 0)
@@ -41,12 +38,12 @@ extension FBPaperTransitionAnimationController {
         // Create a new layout for the animation
         let finalLayout = UICollectionViewFlowLayout().then {
             $0.scrollDirection = .horizontal
-            $0.itemSize = CGSize(width: screenWidth, height: screenHeight)
+            $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH)
             $0.minimumLineSpacing = FBPaperHomeView.Constants.lineSpacing
             $0.minimumInteritemSpacing = FBPaperHomeView.Constants.interItemSpacing
         }
         
-        let targetOffset = CGPoint(x: CGFloat(selectedIndexPath.item) * screenWidth, y: 0)
+        let targetOffset = CGPoint(x: CGFloat(selectedIndexPath.item) * GlobalConstants.screenW, y: 0)
         
         let toViewTransform: CGAffineTransform = .transform(originalFrame: toView.frameInWindow ?? toView.frame,
                                                             toTargetFrame: fromSharedView.frameInWindow ?? fromSharedView.frame)
@@ -80,7 +77,7 @@ extension FBPaperTransitionAnimationController {
             // Animate both layout and height together
             collectionView.setCollectionViewLayout(finalLayout, animated: true)
             collectionView.contentOffset = targetOffset
-            fromViewController.collectionViewHeightConstraint?.constant = screenHeight
+            fromViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH
             fromView.layoutIfNeeded() // Force layout update for smooth height animation
             
             // Animate corner radius for all visible cells
@@ -96,7 +93,7 @@ extension FBPaperTransitionAnimationController {
         } completion: { _ in
             // Reset collectionView to original state
             collectionView.setCollectionViewLayout(fromViewController.layout, animated: false)
-            fromViewController.collectionViewHeightConstraint?.constant = screenHeight * FBPaperHomeView.Constants.scaleFactor
+            fromViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor
             
             backdrop.removeFromSuperview()
             context.completeTransition(true)
@@ -110,26 +107,23 @@ extension FBPaperTransitionAnimationController {
             context.completeTransition(false)
             return
         }
-        
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-        
+
         let collectionView = toViewController.collectionView
         let selectedIndexPath = toViewController.selectedIndexPath ?? IndexPath(item: 0, section: 0)
         
         let finalLayout = UICollectionViewFlowLayout().then {
             $0.scrollDirection = .horizontal
-            $0.itemSize = CGSize(width: screenWidth, height: screenHeight)
+            $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH)
             $0.minimumLineSpacing = FBPaperHomeView.Constants.lineSpacing
             $0.minimumInteritemSpacing = FBPaperHomeView.Constants.interItemSpacing
         }
 
         // Initially set full screen height
-        toViewController.collectionViewHeightConstraint?.constant = screenHeight
+        toViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH
         
         // Initially, collection view takes up entire screen
         collectionView.setCollectionViewLayout(finalLayout, animated: false)
-        let targetOffset = CGPoint(x: CGFloat(selectedIndexPath.item) * screenWidth, y: 0)
+        let targetOffset = CGPoint(x: CGFloat(selectedIndexPath.item) * GlobalConstants.screenW, y: 0)
         collectionView.contentOffset = targetOffset
         
         let fromViewTransform: CGAffineTransform = .transform(originalFrame: fromView.frameInWindow ?? fromView.frame,
@@ -164,7 +158,7 @@ extension FBPaperTransitionAnimationController {
         {
             // Animate to final layout and height
             collectionView.setCollectionViewLayout(toViewController.layout, animated: true)
-            toViewController.collectionViewHeightConstraint?.constant = screenHeight * FBPaperHomeView.Constants.scaleFactor
+            toViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor
             toView.layoutIfNeeded() // Force layout update for smooth height animation
             
             // Animate corner radius for all visible cells

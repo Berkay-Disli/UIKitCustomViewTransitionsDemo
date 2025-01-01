@@ -10,6 +10,7 @@ class FBPaperHomeView: UIViewController {
     private var homeViews: [UIViewController] = [
         PhotoGridView(),
         UntitledGridView(),
+        ModalCardView(),
         PathView()
     ]
     

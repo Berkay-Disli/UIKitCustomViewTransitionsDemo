@@ -144,6 +144,7 @@ The only caveat is if the view is complex, this operation might take much longer
 
 - [ ] Disallow multiple touch inputs during transitions
 - [ ] Experiment with rubber banding individual cells in `UICollectionView`s
+- [ ] Swipe down on demos to return to home view
 
 ## Resources
 

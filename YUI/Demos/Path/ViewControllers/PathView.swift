@@ -16,8 +16,8 @@ final class PathView: UIViewController, IdentifiableViewController {
     
     public lazy var layout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
-        $0.itemSize = CGSize(width: UIScreen.main.bounds.width * Constants.scaleFactor,
-                             height: UIScreen.main.bounds.height * Constants.scaleFactor)
+        $0.itemSize = CGSize(width: GlobalConstants.screenW * Constants.scaleFactor,
+                             height: GlobalConstants.screenH * Constants.scaleFactor)
         $0.minimumLineSpacing = Constants.lineSpacing
         $0.minimumInteritemSpacing = Constants.interItemSpacing
     }
@@ -35,7 +35,6 @@ final class PathView: UIViewController, IdentifiableViewController {
     }
     
     private let transitionAnimator = FBPaperTransitionAnimationController()
-    private var interactionController = FBPaperTransitionInteractionController()
     public var selectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -93,7 +92,6 @@ final class PathView: UIViewController, IdentifiableViewController {
     private func setupBackButton() {
         let backButton = BackButton(blurStyle: .systemUltraThinMaterialDark)
         backButton.backNavigation = { [weak self] in
-            print("Hi")
             self?.navigationController?.popViewController(animated: true)
         }
         
@@ -133,11 +131,12 @@ extension PathView: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController,
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
-                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if fromVC is Self {
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        if toVC is Self {
             transitionAnimator.transition = .push
             return transitionAnimator
-        } else if toVC is Self {
+        } else if toVC is FBPaperHomeView, fromVC is Self {
             transitionAnimator.transition = .pop
             return transitionAnimator
         }

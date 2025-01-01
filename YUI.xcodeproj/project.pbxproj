@@ -57,6 +57,9 @@
 		84C4B0E12D24BBBA00F76C86 /* IdentifiableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */; };
 		84C4B0E52D24D45200F76C86 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */; };
 		84C4B0EF2D24FDF500F76C86 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0EE2D24FDF500F76C86 /* PathView.swift */; };
+		84C4B0F22D2583F500F76C86 /* ModalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F12D2583F500F76C86 /* ModalCard.swift */; };
+		84C4B0F42D25842000F76C86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F32D25841E00F76C86 /* Constants.swift */; };
+		84C4B0F82D25874600F76C86 /* ModalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F72D25874600F76C86 /* ModalCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +116,9 @@
 		84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableViewController.swift; sourceTree = "<group>"; };
 		84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		84C4B0EE2D24FDF500F76C86 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
+		84C4B0F12D2583F500F76C86 /* ModalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCard.swift; sourceTree = "<group>"; };
+		84C4B0F32D25841E00F76C86 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		84C4B0F72D25874600F76C86 /* ModalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,7 @@
 		8401BBF22D1F3BFA0030CD27 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				84C4B0F32D25841E00F76C86 /* Constants.swift */,
 				8401BBE72D1F3BFA0030CD27 /* ClosureLayout */,
 				8401BBEC2D1F3BFA0030CD27 /* CGAffineTransform+Extensions.swift */,
 				8401BBEB2D1F3BFA0030CD27 /* UIApplication+Extensions.swift */,
@@ -346,6 +353,7 @@
 		84C4B0EB2D24FDB100F76C86 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				84C4B0F02D2583E500F76C86 /* ModalCard */,
 				8401BC402D1FBB930030CD27 /* Instagram */,
 				8401BC412D1FBB9B0030CD27 /* [untitled] */,
 				84C4B0EA2D24FD4700F76C86 /* Path */,
@@ -365,6 +373,31 @@
 			isa = PBXGroup;
 			children = (
 				84C4B0EE2D24FDF500F76C86 /* PathView.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84C4B0F02D2583E500F76C86 /* ModalCard */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B0F52D2584D100F76C86 /* Views */,
+				84C4B0F62D25874100F76C86 /* ViewControllers */,
+			);
+			path = ModalCard;
+			sourceTree = "<group>";
+		};
+		84C4B0F52D2584D100F76C86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B0F12D2583F500F76C86 /* ModalCard.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84C4B0F62D25874100F76C86 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B0F72D25874600F76C86 /* ModalCardView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -454,6 +487,7 @@
 				8401BC0E2D1F3BFA0030CD27 /* SharedTransitionAnimationController.swift in Sources */,
 				8401BC0F2D1F3BFA0030CD27 /* Then.swift in Sources */,
 				8401BC102D1F3BFA0030CD27 /* LayoutSizeDimension.swift in Sources */,
+				84C4B0F22D2583F500F76C86 /* ModalCard.swift in Sources */,
 				8401BC112D1F3BFA0030CD27 /* LayoutProxy.swift in Sources */,
 				84C4B0E52D24D45200F76C86 /* UIScreen+Extensions.swift in Sources */,
 				8401BC122D1F3BFA0030CD27 /* CGAffineTransform+Extensions.swift in Sources */,
@@ -466,6 +500,7 @@
 				8401BC172D1F3BFA0030CD27 /* PhotoGridViewHeader.swift in Sources */,
 				8401BC382D1F64680030CD27 /* AlbumCell.swift in Sources */,
 				8401BC3D2D1F6EAC0030CD27 /* TransitionType.swift in Sources */,
+				84C4B0F42D25842000F76C86 /* Constants.swift in Sources */,
 				8401BC182D1F3BFA0030CD27 /* CacheableImageView.swift in Sources */,
 				8401BC1A2D1F3BFA0030CD27 /* UICollectionReusableView+Extensions.swift in Sources */,
 				8401BC492D20FB550030CD27 /* FBPaperHomeView.swift in Sources */,
@@ -479,6 +514,7 @@
 				8401BC342D1F62D40030CD27 /* [untitled]DetailView.swift in Sources */,
 				8401BC3F2D1FBB230030CD27 /* [untitled]GridViewHeader.swift in Sources */,
 				84C4B0EF2D24FDF500F76C86 /* PathView.swift in Sources */,
+				84C4B0F82D25874600F76C86 /* ModalCardView.swift in Sources */,
 				8401BC212D1F3BFA0030CD27 /* SharedTransitioning.swift in Sources */,
 				8401BC4B2D20FBC80030CD27 /* FBPaperPageView.swift in Sources */,
 				8401BC222D1F3BFA0030CD27 /* UIView+Extensions.swift in Sources */,
