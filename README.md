@@ -1,18 +1,22 @@
-## Custom, interactive UIKit animations & transitions
+## YUI
 
-Implementing fluid, interactive transitions between view controllers with UIKit.
+A gallery of various demos built with UIKit, demonstrating fluid, interactive transitions between view controllers, novel user interfaces, and more.
 
 ![image](https://github.com/user-attachments/assets/405e5e5e-72cc-4a90-827f-898819081e9a)
 
 ## Motivation
 
+SwiftUI is great for building out interfaces and apps quickly, but at the expense of feeling very similar amongst one another – standard controls, list views, toggles...
+
 In my opinion, what sets apart a good app from a great one (amongst other things) is the use of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (e.g. pinching to expand or dismiss entries in [Dot](https://new.computer/)) or using a shared, interruptible model (e.g. going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
 
-This repo aims to study, replicate and build upon such transitions, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
+Apart from that, novel user interfaces like the one from [Path](https://brianlovin.com/app-dissection/path-ios) or [Mailbox](https://www.youtube.com/watch?v=FG-h8pDXfoE) also go a long way in making an app feel less box-standard than what floods the app store nowadays. Some might argue that they feel antiquated or less native-feeling, but that was the beauty of apps in the pre-iOS 7 era, where each app could really shine with their own personalities. We have much to learn from their "antiquated-ness".
 
-Since there are so many parts to creating custom UIKit transitions (some boilerplate, some actual code), I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
+This repo aims to study, replicate and build upon such transitions and interfaces, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
 
-## Overview
+A note on custom view transitions: there are many parts that go into creating them (some boilerplate, some actual code), so I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
+
+## Overview: custom view transitions
 
 These are the main ingredients that go into implementing custom, interactive transitions:
 

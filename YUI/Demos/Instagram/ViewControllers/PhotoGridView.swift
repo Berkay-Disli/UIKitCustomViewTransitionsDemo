@@ -164,10 +164,6 @@ final class PhotoGridView: UIViewController, IdentifiableViewController {
         }
     }
     
-    private var backButtonAction: UIAction {
-        UIAction(handler: { [weak self] _ in self?.navigationController?.popViewController(animated: true) })
-    }
-    
     private func setupBackButton() {
         let backButton = BackButton(blurStyle: .systemUltraThinMaterialDark)
         backButton.backNavigation = { [weak self] in

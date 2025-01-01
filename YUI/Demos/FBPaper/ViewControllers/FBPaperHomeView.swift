@@ -9,7 +9,8 @@ class FBPaperHomeView: UIViewController {
     
     private var homeViews: [UIViewController] = [
         PhotoGridView(),
-        UntitledGridView()
+        UntitledGridView(),
+        PathView()
     ]
     
     public lazy var layout = UICollectionViewFlowLayout().then {
@@ -95,7 +96,7 @@ class FBPaperHomeView: UIViewController {
     private func setupInfo() {
         let title = UILabel()
         let titleAS = NSAttributedString(
-            string: "TRANSITIONS",
+            string: "YUI",
             attributes: [
                 NSAttributedString.Key.kern: -0.8,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .semibold),
@@ -112,7 +113,7 @@ class FBPaperHomeView: UIViewController {
         
         let description = UILabel()
         let descriptionAS = NSAttributedString(
-            string: "A gallery of custom view transitions, built entirely in UIKit. Inspired by apps like Instagram, Facebook Paper, and [untitled].",
+            string: "A gallery of custom view transitions and interfaces built entirely in UIKit. Inspired by apps like Instagram, Facebook Paper, Path, [untitled], and more.",
             attributes: [
                 NSAttributedString.Key.kern: -0.2,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light),

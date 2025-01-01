@@ -56,10 +56,11 @@
 		8401BC572D2201F90030CD27 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC562D2201F00030CD27 /* BackButton.swift */; };
 		84C4B0E12D24BBBA00F76C86 /* IdentifiableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */; };
 		84C4B0E52D24D45200F76C86 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */; };
+		84C4B0EF2D24FDF500F76C86 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0EE2D24FDF500F76C86 /* PathView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8401BBB92D1F391F0030CD27 /* Transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8401BBB92D1F391F0030CD27 /* YUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8401BBD12D1F39520030CD27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8401BBD22D1F39520030CD27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8401BBD32D1F39520030CD27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		8401BC562D2201F00030CD27 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableViewController.swift; sourceTree = "<group>"; };
 		84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
+		84C4B0EE2D24FDF500F76C86 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				8401BC272D1F3D0D0030CD27 /* README.md */,
-				8401BBD82D1F39520030CD27 /* Transitions */,
+				8401BBD82D1F39520030CD27 /* YUI */,
 				8401BBBA2D1F391F0030CD27 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,12 +138,12 @@
 		8401BBBA2D1F391F0030CD27 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8401BBB92D1F391F0030CD27 /* Transitions.app */,
+				8401BBB92D1F391F0030CD27 /* YUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8401BBD82D1F39520030CD27 /* Transitions */ = {
+		8401BBD82D1F39520030CD27 /* YUI */ = {
 			isa = PBXGroup;
 			children = (
 				8401BBD22D1F39520030CD27 /* Assets.xcassets */,
@@ -152,11 +154,9 @@
 				8401BBF22D1F3BFA0030CD27 /* Utils */,
 				8401BC062D1F3BFA0030CD27 /* Views */,
 				8401BBFD2D1F3BFA0030CD27 /* Transition */,
-				8401BC402D1FBB930030CD27 /* InstagramTransition */,
-				8401BC412D1FBB9B0030CD27 /* [untitled]Transition */,
-				8401BC442D20F7510030CD27 /* FBPaperTransition */,
+				84C4B0EB2D24FDB100F76C86 /* Demos */,
 			);
-			path = Transitions;
+			path = YUI;
 			sourceTree = "<group>";
 		};
 		8401BBE72D1F3BFA0030CD27 /* ClosureLayout */ = {
@@ -277,34 +277,34 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		8401BC402D1FBB930030CD27 /* InstagramTransition */ = {
+		8401BC402D1FBB930030CD27 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
 				8401BC282D1F3D480030CD27 /* Transition */,
 				8401BC2D2D1F4BAC0030CD27 /* Views */,
 				8401BC2B2D1F4B930030CD27 /* ViewControllers */,
 			);
-			path = InstagramTransition;
+			path = Instagram;
 			sourceTree = "<group>";
 		};
-		8401BC412D1FBB9B0030CD27 /* [untitled]Transition */ = {
+		8401BC412D1FBB9B0030CD27 /* [untitled] */ = {
 			isa = PBXGroup;
 			children = (
 				8401BC2A2D1F3D660030CD27 /* Transition */,
 				8401BC302D1F4BC70030CD27 /* Views */,
 				8401BC2C2D1F4B9D0030CD27 /* ViewControllers */,
 			);
-			path = "[untitled]Transition";
+			path = "[untitled]";
 			sourceTree = "<group>";
 		};
-		8401BC442D20F7510030CD27 /* FBPaperTransition */ = {
+		8401BC442D20F7510030CD27 /* FBPaper */ = {
 			isa = PBXGroup;
 			children = (
 				8401BC462D20F7620030CD27 /* Transition */,
 				8401BC452D20F75D0030CD27 /* Views */,
 				8401BC472D20F7650030CD27 /* ViewControllers */,
 			);
-			path = FBPaperTransition;
+			path = FBPaper;
 			sourceTree = "<group>";
 		};
 		8401BC452D20F75D0030CD27 /* Views */ = {
@@ -334,12 +334,47 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		84C4B0EA2D24FD4700F76C86 /* Path */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B0EC2D24FDE000F76C86 /* Views */,
+				84C4B0ED2D24FDE400F76C86 /* ViewControllers */,
+			);
+			path = Path;
+			sourceTree = "<group>";
+		};
+		84C4B0EB2D24FDB100F76C86 /* Demos */ = {
+			isa = PBXGroup;
+			children = (
+				8401BC402D1FBB930030CD27 /* Instagram */,
+				8401BC412D1FBB9B0030CD27 /* [untitled] */,
+				84C4B0EA2D24FD4700F76C86 /* Path */,
+				8401BC442D20F7510030CD27 /* FBPaper */,
+			);
+			path = Demos;
+			sourceTree = "<group>";
+		};
+		84C4B0EC2D24FDE000F76C86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84C4B0ED2D24FDE400F76C86 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B0EE2D24FDF500F76C86 /* PathView.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8401BBB82D1F391F0030CD27 /* Transitions */ = {
+		8401BBB82D1F391F0030CD27 /* YUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8401BBCC2D1F39200030CD27 /* Build configuration list for PBXNativeTarget "Transitions" */;
+			buildConfigurationList = 8401BBCC2D1F39200030CD27 /* Build configuration list for PBXNativeTarget "YUI" */;
 			buildPhases = (
 				8401BBB52D1F391F0030CD27 /* Sources */,
 				8401BBB62D1F391F0030CD27 /* Frameworks */,
@@ -349,11 +384,11 @@
 			);
 			dependencies = (
 			);
-			name = Transitions;
+			name = YUI;
 			packageProductDependencies = (
 			);
 			productName = Transitions;
-			productReference = 8401BBB92D1F391F0030CD27 /* Transitions.app */;
+			productReference = 8401BBB92D1F391F0030CD27 /* YUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -371,7 +406,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8401BBB42D1F391F0030CD27 /* Build configuration list for PBXProject "Transitions" */;
+			buildConfigurationList = 8401BBB42D1F391F0030CD27 /* Build configuration list for PBXProject "YUI" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -385,7 +420,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8401BBB82D1F391F0030CD27 /* Transitions */,
+				8401BBB82D1F391F0030CD27 /* YUI */,
 			);
 		};
 /* End PBXProject section */
@@ -443,6 +478,7 @@
 				8401BC202D1F3BFA0030CD27 /* UICollectionView+Extensions.swift in Sources */,
 				8401BC342D1F62D40030CD27 /* [untitled]DetailView.swift in Sources */,
 				8401BC3F2D1FBB230030CD27 /* [untitled]GridViewHeader.swift in Sources */,
+				84C4B0EF2D24FDF500F76C86 /* PathView.swift in Sources */,
 				8401BC212D1F3BFA0030CD27 /* SharedTransitioning.swift in Sources */,
 				8401BC4B2D20FBC80030CD27 /* FBPaperPageView.swift in Sources */,
 				8401BC222D1F3BFA0030CD27 /* UIView+Extensions.swift in Sources */,
@@ -480,8 +516,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DWPGCY8DQB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Transitions/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "For displaying your photos in a grid view";
+				INFOPLIST_FILE = YUI/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "For displaying media in the photos grid view demo";
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -492,7 +528,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yihui.Transitions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yihui.YUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -513,8 +549,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DWPGCY8DQB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Transitions/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "For displaying your photos in a grid view";
+				INFOPLIST_FILE = YUI/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "For displaying media in the photos grid view demo";
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -525,7 +561,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yihui.Transitions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yihui.YUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -589,7 +625,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -646,7 +682,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -659,7 +695,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8401BBB42D1F391F0030CD27 /* Build configuration list for PBXProject "Transitions" */ = {
+		8401BBB42D1F391F0030CD27 /* Build configuration list for PBXProject "YUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8401BBCF2D1F39200030CD27 /* Debug */,
@@ -668,7 +704,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8401BBCC2D1F39200030CD27 /* Build configuration list for PBXNativeTarget "Transitions" */ = {
+		8401BBCC2D1F39200030CD27 /* Build configuration list for PBXNativeTarget "YUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8401BBCD2D1F39200030CD27 /* Debug */,
