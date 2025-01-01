@@ -10,9 +10,9 @@ SwiftUI is great for building out interfaces and apps quickly, but at the expens
 
 In my opinion, what sets apart a good app from a great one (amongst other things) is the use of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (e.g. pinching to expand or dismiss entries in [Dot](https://new.computer/)) or using a shared, interruptible model (e.g. going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
 
-Apart from that, novel user interfaces like the ones from [Path](https://brianlovin.com/app-dissection/path-ios) or [Mailbox](https://www.youtube.com/watch?v=FG-h8pDXfoE) also go a long way in making an app feel less box-standard than what floods the app store nowadays. Transient pop-ups that sync with some state like scroll position, custom swipe actions whose buttons fan out in some elegant way... these add surprise and delight, and leave you wondering how they were made. Some might argue that these apps feel antiquated or less native-feeling as a result of these bespoke interfaces, but that was the beauty of apps in the pre-iOS 7 era, where each app could really shine with their own personalities. We have much to learn from their "antiquated-ness".
+Apart from that, novel user interfaces like the ones from [Path](https://brianlovin.com/app-dissection/path-ios) or [Mailbox](https://www.youtube.com/watch?v=FG-h8pDXfoE) also go a long way in making an app feel less box-standard than what's on the App Store nowadays. Transient pop-ups that sync with some state like scroll position, custom swipe actions whose buttons fan out in some elegant way... these add surprise and delight, and leave you wondering how they were made. Some might argue that these apps feel antiquated or less native-feeling as a result of these bespoke interfaces, but that was the beauty of apps in the pre-iOS 7 era, where each app could shine with their own personalities. We have much to learn from their "antiquated-ness".
 
-This repo aims to study, replicate and build upon such transitions and interfaces, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
+This repo thus aims to study, replicate and build upon such transitions and interfaces, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
 
 > [!NOTE]
 > In particular, for custom view transitions, there are many parts that go into creating them (some boilerplate, some actual code), so I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
@@ -80,7 +80,7 @@ If the transition logic is tightly coupled with the view controllers' internal s
 
 ## Demos
 
-This section provides light documentation of the transition demos implemented in the project, in terms of the techniques and approaches used to achieve each effect.
+This section provides light documentation of the demos implemented in the project, in terms of the techniques and approaches used.
 
 ### Facebook Paper transition demo
 
@@ -111,7 +111,7 @@ Essentially, when the transition begins, we crop the destination view to match t
 
 ### [untitled] transition demo
 
-It is crucial that the `sharedView` that both view controllers implement are **copies** instead of references, since it becomes **much easier** to reason about and manipulate them for our custom transitions. Otherwise, we would have to involve convoluted logic to manage and restore states before, during and after the transition. With copies, we can easily create and destroy them on demand with little overhead. 
+It is crucial that the `sharedView` that both view controllers implement as part of the `SharedTransitioning` protocol are **copies** instead of references, since it becomes **much easier** to reason about and manipulate them for our custom transitions. Otherwise, we would have to involve convoluted logic to manage and restore states before, during and after the transition. With copies, we can easily create and destroy them on demand with little overhead. 
 
 The only caveat is if the view is complex, this operation might take much longer. The alternative is to manipulate the source and destination views themselves using clever tricks like masks, as is the case with the Instagram transition demo.
 
