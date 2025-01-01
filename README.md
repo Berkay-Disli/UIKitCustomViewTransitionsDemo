@@ -84,7 +84,7 @@ This section provides light documentation of the demos implemented in the projec
 
 ### Facebook Paper transition demo
 
-This demo is the main hub for all the other transitions, and is what you see when you first open the app. It aims to replicate the expanding and shrinking transition of stories. A horizontally scrolling `UICollectionView` with a constrained height is used, and the cells contained within are all scaled down by `0.4` with respect to the device's screen size. 
+This demo/view serves as the main hub for all the other demos, and is what you see when you first open the app. It aims to replicate the expanding and shrinking transition of stories. A horizontally scrolling `UICollectionView` with a constrained height is used, and the cells contained within are all scaled down by `0.4` with respect to the device's screen size. 
 
 During the transition, we map the destination view to the cell that was selected both in terms of size and position, and from there we animate the growth of both the cell and destination view in tandem to fill up the screen, also adjusting the `contentOffset` of the collection view as the transition progresses so that it aligns perfectly to the center of the screen.
 
@@ -108,6 +108,10 @@ static func transform(parent: CGRect,
 ```
 
 Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination view appears to grow to take up the entire screen, via manipulation of the mask.
+
+### ModalCard demo
+
+This demo demonstrates a three-stage modal that is inset from the edges of the screen, which is apparently very trendy nowadays (see: [Family](https://family.co)). It feature custom rubber-banding and drag gesture logic, allowing for fluid navigation between the different states without any jarring locking.
 
 ### [untitled] transition demo
 
