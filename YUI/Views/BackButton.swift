@@ -17,7 +17,7 @@ class BackButton: UIButton {
         
     private lazy var chevronImageView: UIImageView = {
         let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .semibold)
-        let image = UIImage(systemName: "chevron.left", withConfiguration: config)?
+        let image = UIImage(systemName: "arrow.left", withConfiguration: config)?
             .withTintColor(customTintColor, renderingMode: .alwaysOriginal)
         let imageView = UIImageView(image: image)
         imageView.isUserInteractionEnabled = false

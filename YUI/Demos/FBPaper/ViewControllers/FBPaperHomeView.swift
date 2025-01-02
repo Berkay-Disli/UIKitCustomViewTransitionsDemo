@@ -207,22 +207,10 @@ extension FBPaperHomeView {
         
         switch recognizer.state {
         case .began:
-            // Store the relative touch position within the visible content
-            let touchPoint = recognizer.location(in: collectionView)
-            initialTouchPoint = touchPoint
-            initialContentOffset = collectionView.contentOffset
-            
-            // Store the touched cell's index and frame
-            if let indexPath = collectionView.indexPathForItem(at: touchPoint) {
-                let cellFrame = collectionView.layoutAttributesForItem(at: indexPath)?.frame ?? .zero
-                initialCenterX = cellFrame.midX - collectionView.contentOffset.x
-            }
+            // No op
+            print("Gesture began")
             
         case .changed:
-            guard let initialTouchPoint = initialTouchPoint,
-                  let initialContentOffset = initialContentOffset,
-                  let initialCenterX = initialCenterX else { return }
-            
             let translation = recognizer.translation(in: view)
             
             // Calculate progress with slight dampening
@@ -247,21 +235,10 @@ extension FBPaperHomeView {
             updatedLayout.minimumLineSpacing = Constants.lineSpacing
             updatedLayout.minimumInteritemSpacing = Constants.interItemSpacing
             
-            // Calculate the new content offset to maintain the cell position
-            let scaledCenterX = initialCenterX * scaleX
-            let touchPointInView = recognizer.location(in: view)
-            let targetContentOffsetX = scaledCenterX - (touchPointInView.x - collectionView.frame.minX)
-            
-            // Apply changes with dampening for smoother scrolling
-            let currentOffset = collectionView.contentOffset.x
-            let dampening: CGFloat = 0.7
-            let newContentOffsetX = currentOffset + (targetContentOffsetX - currentOffset) * dampening
-            
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             
             collectionView.setCollectionViewLayout(updatedLayout, animated: false)
-            collectionView.contentOffset.x = newContentOffsetX
             collectionViewHeightConstraint?.constant = newHeight
             
             CATransaction.commit()
@@ -270,49 +247,28 @@ extension FBPaperHomeView {
             let velocity = recognizer.velocity(in: view)
             let translation = recognizer.translation(in: view)
             
-            // Clear stored values
-            initialTouchPoint = nil
-            initialContentOffset = nil
-            initialCenterX = nil
-            
-            // Determine if we should complete the expansion
-            let shouldExpand = -translation.y > screenH * 0.2 || velocity.y < -500
-            
-            if shouldExpand {
-                if let mostVisibleIndex = getMostVisibleCellIndex() {
-                    selectedIndexPath = IndexPath(item: mostVisibleIndex, section: 0)
-                    navigationController?.pushViewController(homeViews[mostVisibleIndex], animated: true)
-                }
-            } else {
-                // Reset to original state with animation
-                let animator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 1) {
-                    let currentOffset = self.collectionView.contentOffset
-                    self.collectionView.setCollectionViewLayout(self.layout, animated: false)
-                    self.collectionView.contentOffset = currentOffset
-                    self.collectionViewHeightConstraint?.constant = screenH * Constants.scaleFactor
-                    self.view.layoutIfNeeded()
-                }
-                animator.startAnimation()
+//            // Determine if we should complete the expansion
+//            let shouldExpand = -translation.y > screenH * 0.2 || velocity.y < -500
+//            
+//            if shouldExpand {
+//                if let mostVisibleIndex = getMostVisibleCellIndex() {
+//                    selectedIndexPath = IndexPath(item: mostVisibleIndex, section: 0)
+//                    navigationController?.pushViewController(homeViews[mostVisibleIndex], animated: true)
+//                }
+//            } else {
+            // Reset to original state with animation
+            let animator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 1) {
+                let currentOffset = self.collectionView.contentOffset
+                self.collectionView.setCollectionViewLayout(self.layout, animated: false)
+                self.collectionView.contentOffset = currentOffset
+                self.collectionViewHeightConstraint?.constant = screenH * Constants.scaleFactor
+                self.view.layoutIfNeeded()
             }
+            animator.startAnimation()
+//            }
             
         default:
             break
-        }
-    }
-
-    // Add this property to store the initial center position
-    private struct AssociatedKeys {
-        static var initialTouchPoint = "initialTouchPoint"
-        static var initialContentOffset = "initialContentOffset"
-        static var initialCenterX = "initialCenterX"
-    }
-
-    private var initialCenterX: CGFloat? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.initialCenterX) as? CGFloat
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.initialCenterX, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
@@ -336,24 +292,6 @@ extension FBPaperHomeView {
         }
         
         return mostVisibleCellIndex
-    }
-
-    private var initialTouchPoint: CGPoint? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.initialTouchPoint) as? CGPoint
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.initialTouchPoint, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
-    private var initialContentOffset: CGPoint? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.initialContentOffset) as? CGPoint
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.initialContentOffset, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
     }
     
     // Hide home bar

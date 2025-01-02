@@ -28,7 +28,7 @@ class ModalCardView: UIViewController, IdentifiableViewController {
             cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        cardView.updateLayout(for: .peek, animated: false)
+        cardView.updateLayout(for: .half, animated: false)
     }
     
     private func setupBackButton() {

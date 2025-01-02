@@ -68,6 +68,23 @@ final class ModalCard: UIView {
         mainHeightConstraint?.isActive = true
         heightConstraint?.isActive = true
         bottomConstraint?.isActive = true
+        
+        let text = UILabel()
+        let textAS = NSAttributedString(
+            string: "Drag me up and down!",
+            attributes: [
+                NSAttributedString.Key.kern: -0.8,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold),
+                NSAttributedString.Key.foregroundColor: UIColor.blue.withAlphaComponent(0.2)
+            ]
+        )
+        text.attributedText = textAS
+        text.then {
+            addSubview($0)
+        }.layout {
+            $0.centerX == contentView.centerXAnchor
+            $0.centerY == contentView.centerYAnchor
+        }
     }
     
     private func setupGesture() {
