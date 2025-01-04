@@ -75,7 +75,7 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
             var date = Calendar.current.date(byAdding: .day,
                                              value: -i * 3, to: Date()) ?? Date()
             date = Calendar.current.date(byAdding: .second,
-                                         value: Bool.random() ? -i * 24800 : i * 46572,
+                                         value: Bool.random() ? Int.random(in: -24800...0) : Int.random(in: 0...46572),
                                          to: date) ?? Date()
 
             // Convert to relative date
