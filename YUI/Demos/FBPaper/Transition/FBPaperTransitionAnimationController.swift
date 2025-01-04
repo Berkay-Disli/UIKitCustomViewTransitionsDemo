@@ -38,7 +38,7 @@ extension FBPaperTransitionAnimationController {
         // Create a new layout for the animation
         let finalLayout = UICollectionViewFlowLayout().then {
             $0.scrollDirection = .horizontal
-            $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH)
+            $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH + 80)
             $0.minimumLineSpacing = FBPaperHomeView.Constants.lineSpacing
             $0.minimumInteritemSpacing = FBPaperHomeView.Constants.interItemSpacing
         }
@@ -49,7 +49,7 @@ extension FBPaperTransitionAnimationController {
                                                             toTargetFrame: fromSharedView.frameInWindow ?? fromSharedView.frame)
         toView.layer.opacity = 0
         toView.transform = toViewTransform
-        toView.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
+        toView.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 12)
         
         let backdrop = UIView().then {
             $0.backgroundColor = .black
@@ -60,7 +60,8 @@ extension FBPaperTransitionAnimationController {
 
         // Update corner radius for all visible cells
         collectionView.visibleCells.forEach { cell in
-            cell.layer.cornerRadius = cell.layer.cornerRadius // Preserve current corner radius
+            let cell = cell as! FBPaperHomeViewCell
+            cell.imageContainer.layer.cornerRadius = cell.imageContainer.layer.cornerRadius // Preserve current corner radius
         }
 
         // First, update height to match initial collection view height
@@ -82,7 +83,8 @@ extension FBPaperTransitionAnimationController {
             
             // Animate corner radius for all visible cells
             collectionView.visibleCells.forEach { cell in
-                cell.layer.cornerRadius = UIScreen.main.displayCornerRadius
+                let cell = cell as! FBPaperHomeViewCell
+                cell.imageContainer.layer.cornerRadius = UIScreen.main.displayCornerRadius
             }
             
             toView.layer.opacity = 1
@@ -93,7 +95,7 @@ extension FBPaperTransitionAnimationController {
         } completion: { _ in
             // Reset collectionView to original state
             collectionView.setCollectionViewLayout(fromViewController.layout, animated: false)
-            fromViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor
+            fromViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor + 40
             
             backdrop.removeFromSuperview()
             context.completeTransition(true)
@@ -113,7 +115,7 @@ extension FBPaperTransitionAnimationController {
         
         let finalLayout = UICollectionViewFlowLayout().then {
             $0.scrollDirection = .horizontal
-            $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH)
+            $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH + 80)
             $0.minimumLineSpacing = FBPaperHomeView.Constants.lineSpacing
             $0.minimumInteritemSpacing = FBPaperHomeView.Constants.interItemSpacing
         }
@@ -144,7 +146,8 @@ extension FBPaperTransitionAnimationController {
         
         // Now set the corner radius after the layout has been updated
         collectionView.visibleCells.forEach { cell in
-            cell.layer.cornerRadius = UIScreen.main.displayCornerRadius
+            let cell = cell as! FBPaperHomeViewCell
+            cell.imageContainer.layer.cornerRadius = UIScreen.main.displayCornerRadius
         }
         
         fromView.layer.opacity = 1
@@ -158,17 +161,18 @@ extension FBPaperTransitionAnimationController {
         {
             // Animate to final layout and height
             collectionView.setCollectionViewLayout(toViewController.layout, animated: true)
-            toViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor
+            toViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor + 40
             toView.layoutIfNeeded() // Force layout update for smooth height animation
             
             // Animate corner radius for all visible cells
             collectionView.visibleCells.forEach { cell in
-                cell.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
+                let cell = cell as! FBPaperHomeViewCell
+                cell.imageContainer.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
             }
             
             fromView.layer.opacity = 0
             fromView.transform = fromViewTransform
-            fromView.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
+            fromView.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 16)
             
             backdrop.layer.opacity = 0
         } completion: { _ in

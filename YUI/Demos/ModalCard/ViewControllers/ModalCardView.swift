@@ -1,7 +1,8 @@
 import UIKit
 
-class ModalCardView: UIViewController, IdentifiableViewController {
+class ModalCardView: UIViewController, ViewControllerIdentifiable {
     var stringIdentifier: String = "ModalCardView"
+    var nameIdentifier: String = "Modal Card"
 
     var startX = CGFloat(0)
     private let transitionAnimator = FBPaperTransitionAnimationController()

@@ -1,7 +1,8 @@
 import UIKit
 
-final class UntitledGridView: UIViewController, IdentifiableViewController {
+final class UntitledGridView: UIViewController, ViewControllerIdentifiable {
     var stringIdentifier: String = "UntitledGridView"
+    var nameIdentifier: String = "[untitled]"
     
     private enum Constants {
         static let numberOfCols = 2

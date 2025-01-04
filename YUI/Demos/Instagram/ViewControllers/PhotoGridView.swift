@@ -1,8 +1,9 @@
 import UIKit
 import Photos
 
-final class PhotoGridView: UIViewController, IdentifiableViewController {
+final class PhotoGridView: UIViewController, ViewControllerIdentifiable {
     var stringIdentifier: String = "PhotoGridView"
+    var nameIdentifier: String = "Instagram"
     
     private enum Constants {
         static let numberOfCols = 4

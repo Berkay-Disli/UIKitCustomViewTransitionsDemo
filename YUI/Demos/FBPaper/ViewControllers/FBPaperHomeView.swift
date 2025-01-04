@@ -17,7 +17,7 @@ class FBPaperHomeView: UIViewController {
     public lazy var layout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
         $0.itemSize = CGSize(width: UIScreen.main.bounds.width * Constants.scaleFactor,
-                             height: UIScreen.main.bounds.height * Constants.scaleFactor)
+                             height: UIScreen.main.bounds.height * Constants.scaleFactor + 40) 
         $0.minimumLineSpacing = Constants.lineSpacing
         $0.minimumInteritemSpacing = Constants.interItemSpacing
     }
@@ -87,7 +87,7 @@ class FBPaperHomeView: UIViewController {
             
             // Create and store the height constraint
             let heightConstraint = collectionView.heightAnchor.constraint(
-                equalToConstant: UIScreen.main.bounds.height * Constants.scaleFactor
+                equalToConstant: UIScreen.main.bounds.height * Constants.scaleFactor + 40
             )
             self.collectionViewHeightConstraint = heightConstraint
             heightConstraint.isActive = true
@@ -155,11 +155,11 @@ extension FBPaperHomeView: UICollectionViewDelegate, UICollectionViewDataSource 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FBPaperHomeViewCell.identifier,
                                                       for: indexPath) as! FBPaperHomeViewCell
         
-        guard let viewController = homeViews[indexPath.item] as? IdentifiableViewController else { return cell }
+        guard let viewController = homeViews[indexPath.item] as? ViewControllerIdentifiable else { return cell }
         
         // Configure cell with preview image of destination view controller
         let image = UIImage(named: viewController.stringIdentifier)
-        cell.configure(image: image)
+        cell.configure(image: image, title: viewController.nameIdentifier)
         
         return cell
     }
@@ -309,7 +309,7 @@ extension FBPaperHomeView: FBPaperTransitioning {
         }
         
         // Recreate a snapshot of the cell instead of returning the cell itself
-        let snapshotView = UIView(frame: cell.frameInWindow ?? cell.frame)
+        let snapshotView = UIView(frame: cell.imageContainer.frameInWindow ?? cell.imageContainer.frame)
         snapshotView.layer.cornerCurve = .continuous
         snapshotView.layer.cornerRadius = 8
         

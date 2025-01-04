@@ -54,7 +54,7 @@
 		8401BC532D2102F80030CD27 /* FBPaperTransitionInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC512D2102F80030CD27 /* FBPaperTransitionInteractionController.swift */; };
 		8401BC552D2120990030CD27 /* FBPaperTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */; };
 		8401BC572D2201F90030CD27 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC562D2201F00030CD27 /* BackButton.swift */; };
-		84C4B0E12D24BBBA00F76C86 /* IdentifiableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */; };
+		84C4B0E12D24BBBA00F76C86 /* ViewControllerIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E02D24BBB700F76C86 /* ViewControllerIdentifiable.swift */; };
 		84C4B0E52D24D45200F76C86 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */; };
 		84C4B0EF2D24FDF500F76C86 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0EE2D24FDF500F76C86 /* PathView.swift */; };
 		84C4B0F22D2583F500F76C86 /* ModalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F12D2583F500F76C86 /* ModalCard.swift */; };
@@ -115,7 +115,7 @@
 		8401BC512D2102F80030CD27 /* FBPaperTransitionInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperTransitionInteractionController.swift; sourceTree = "<group>"; };
 		8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperTransitioning.swift; sourceTree = "<group>"; };
 		8401BC562D2201F00030CD27 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
-		84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableViewController.swift; sourceTree = "<group>"; };
+		84C4B0E02D24BBB700F76C86 /* ViewControllerIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerIdentifiable.swift; sourceTree = "<group>"; };
 		84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		84C4B0EE2D24FDF500F76C86 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 		84C4B0F12D2583F500F76C86 /* ModalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCard.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 				8401BBF02D1F3BFA0030CD27 /* CGSize+Extensions.swift */,
 				8401BBF12D1F3BFA0030CD27 /* PHAsset+Extensions.swift */,
 				8401BBE82D1F3BFA0030CD27 /* Then.swift */,
-				84C4B0E02D24BBB700F76C86 /* IdentifiableViewController.swift */,
+				84C4B0E02D24BBB700F76C86 /* ViewControllerIdentifiable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -502,7 +502,7 @@
 				8401BC142D1F3BFA0030CD27 /* LayoutOperators.swift in Sources */,
 				8401BC152D1F3BFA0030CD27 /* PHAsset+Extensions.swift in Sources */,
 				8401BC162D1F3BFA0030CD27 /* PhotoGridView.swift in Sources */,
-				84C4B0E12D24BBBA00F76C86 /* IdentifiableViewController.swift in Sources */,
+				84C4B0E12D24BBBA00F76C86 /* ViewControllerIdentifiable.swift in Sources */,
 				8401BC572D2201F90030CD27 /* BackButton.swift in Sources */,
 				8401BC172D1F3BFA0030CD27 /* PhotoGridViewHeader.swift in Sources */,
 				8401BC382D1F64680030CD27 /* AlbumCell.swift in Sources */,

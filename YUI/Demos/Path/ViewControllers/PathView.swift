@@ -1,7 +1,8 @@
 import UIKit
 
-final class PathView: UIViewController, IdentifiableViewController {
+final class PathView: UIViewController, ViewControllerIdentifiable {
     var stringIdentifier: String = "PathView"
+    var nameIdentifier: String = "Path"
     
     private let transitionAnimator = FBPaperTransitionAnimationController()
     public var selectedIndexPath: IndexPath?
