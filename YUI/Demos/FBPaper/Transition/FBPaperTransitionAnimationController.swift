@@ -85,6 +85,7 @@ extension FBPaperTransitionAnimationController {
             collectionView.visibleCells.forEach { cell in
                 let cell = cell as! FBPaperHomeViewCell
                 cell.imageContainer.layer.cornerRadius = UIScreen.main.displayCornerRadius
+                cell.titleLabel.layer.opacity = 0
             }
             
             toView.layer.opacity = 1
@@ -168,6 +169,7 @@ extension FBPaperTransitionAnimationController {
             collectionView.visibleCells.forEach { cell in
                 let cell = cell as! FBPaperHomeViewCell
                 cell.imageContainer.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
+                cell.titleLabel.layer.opacity = 1
             }
             
             fromView.layer.opacity = 0
