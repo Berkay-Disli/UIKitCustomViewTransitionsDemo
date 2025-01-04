@@ -1,3 +1,5 @@
+// Adapted from https://iosdevtips.co/post/88481653818/twitter-ios-app-bird-zoom-animation
+
 import UIKit
 
 final class TwitterSplashScreenView: UIViewController, ViewControllerIdentifiable {

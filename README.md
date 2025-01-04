@@ -123,6 +123,10 @@ This demo demonstrates a three-stage modal that is inset from the edges of the s
 
 This demo replicates the [neat clock tooltip](https://littlebigdetails.com/post/15886779130/path-when-scrolling-in-the-app-the-clock) that appears on scroll in Path. The position of the tooltip is synced with the scrollbar via overriding various `UIScrollView` methods, and we convert the center point of the tooltip in its coordinate system to the coordinate system of the `UICollectionView` to determine which post the tooltip is currently intersecting with. Then, we can update the tooltip to show the correct date and time for that post.
 
+### Twitter splash screen demo
+
+This demo replicates the [Twitter logo animation](https://iosdevtips.co/post/88481653818/twitter-ios-app-bird-zoom-animation) when launching the app from a cold boot. It uses a simple masking technique and 2-stage animation sequence to pull off – the first stage shrinks the bird down slightly, before expanding to reveal the app's contents, which also has a subtle shrinking animation, in the second stage.
+
 ## TODOs
 
 ### Facebook Paper transition demo
