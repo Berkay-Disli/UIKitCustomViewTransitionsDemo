@@ -32,17 +32,10 @@ class FBPaperHomeView: UIViewController {
         $0.delegate = self
         $0.dataSource = self
         $0.delaysContentTouches = false
-//        $0.layer.borderWidth = 1
-//        $0.layer.borderColor = UIColor.red.cgColor
         $0.backgroundColor = .clear
     }
     
     private let transitionAnimator = FBPaperTransitionAnimationController()
-    private var interactionController = FBPaperTransitionInteractionController()
-    private lazy var panGestureRecognizer = UIPanGestureRecognizer(
-        target: self,
-        action: #selector(handlePan)
-    )
     public var selectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -73,13 +66,7 @@ class FBPaperHomeView: UIViewController {
         collectionView.then {
             $0.contentInsetAdjustmentBehavior = .never
             $0.showsHorizontalScrollIndicator = false
-            
-            // TODO: Implement interactive transition
-            // $0.addGestureRecognizer(panGestureRecognizer)
-            // panGestureRecognizer.delegate = self
-            
             $0.alwaysBounceVertical = false
-            
             view.addSubview($0)
         }.layout {
             $0.leading == view.leadingAnchor
@@ -192,109 +179,9 @@ extension FBPaperHomeView: UINavigationControllerDelegate {
         // Use default animation otherwise
         return nil
     }
-    
-    //    func navigationController(
-    //        _ navigationController: UINavigationController,
-    //        interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?
-    //    {
-    //        interactionController
-    //    }
 }
 
 extension FBPaperHomeView {
-    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
-        let screenW: CGFloat = UIScreen.main.bounds.width
-        let screenH: CGFloat = UIScreen.main.bounds.height
-        
-        switch recognizer.state {
-        case .began:
-            // No op
-            print("Gesture began")
-            
-        case .changed:
-            let translation = recognizer.translation(in: view)
-            
-            // Calculate progress with slight dampening
-            let progress = min(1, max(0, -translation.y / (screenH * 0.3)))
-            
-            // Calculate new sizes
-            let initialWidth = screenW * Constants.scaleFactor
-            let initialHeight = screenH * Constants.scaleFactor
-            let finalWidth = screenW
-            let finalHeight = screenH
-            
-            let newWidth = initialWidth + ((finalWidth - initialWidth) * progress)
-            let newHeight = initialHeight + ((finalHeight - initialHeight) * progress)
-            
-            // Calculate scale factors
-            let scaleX = newWidth / initialWidth
-            
-            // Update layout
-            let updatedLayout = UICollectionViewFlowLayout()
-            updatedLayout.scrollDirection = .horizontal
-            updatedLayout.itemSize = CGSize(width: newWidth, height: newHeight)
-            updatedLayout.minimumLineSpacing = Constants.lineSpacing
-            updatedLayout.minimumInteritemSpacing = Constants.interItemSpacing
-            
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            
-            collectionView.setCollectionViewLayout(updatedLayout, animated: false)
-            collectionViewHeightConstraint?.constant = newHeight
-            
-            CATransaction.commit()
-            
-        case .ended, .cancelled:
-            let velocity = recognizer.velocity(in: view)
-            let translation = recognizer.translation(in: view)
-            
-//            // Determine if we should complete the expansion
-//            let shouldExpand = -translation.y > screenH * 0.2 || velocity.y < -500
-//            
-//            if shouldExpand {
-//                if let mostVisibleIndex = getMostVisibleCellIndex() {
-//                    selectedIndexPath = IndexPath(item: mostVisibleIndex, section: 0)
-//                    navigationController?.pushViewController(homeViews[mostVisibleIndex], animated: true)
-//                }
-//            } else {
-            // Reset to original state with animation
-            let animator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 1) {
-                let currentOffset = self.collectionView.contentOffset
-                self.collectionView.setCollectionViewLayout(self.layout, animated: false)
-                self.collectionView.contentOffset = currentOffset
-                self.collectionViewHeightConstraint?.constant = screenH * Constants.scaleFactor
-                self.view.layoutIfNeeded()
-            }
-            animator.startAnimation()
-//            }
-            
-        default:
-            break
-        }
-    }
-    
-    // Helper method to determine the most visible cell
-    private func getMostVisibleCellIndex() -> Int? {
-        let visibleCells = collectionView.visibleCells
-        var maxVisibleArea: CGFloat = 0
-        var mostVisibleCellIndex: Int?
-        
-        for cell in visibleCells {
-            guard let indexPath = collectionView.indexPath(for: cell) else { continue }
-            let cellFrame = cell.frame
-            let visibleCellFrame = collectionView.convert(cellFrame, to: view)
-            let intersection = visibleCellFrame.intersection(view.bounds)
-            let visibleArea = intersection.width * intersection.height
-            
-            if visibleArea > maxVisibleArea {
-                maxVisibleArea = visibleArea
-                mostVisibleCellIndex = indexPath.item
-            }
-        }
-        
-        return mostVisibleCellIndex
-    }
-    
     // Hide home bar
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true

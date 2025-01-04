@@ -6,6 +6,7 @@ class ModalCardView: UIViewController, ViewControllerIdentifiable {
 
     var startX = CGFloat(0)
     private let transitionAnimator = FBPaperTransitionAnimationController()
+    private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,14 @@ class ModalCardView: UIViewController, ViewControllerIdentifiable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.delegate = self
+    }
+    
+    func setupView() {
+        view.backgroundColor = .white
+        
+        // Add pan gesture recognizer that will activate the interactive pop transition
+        view.addGestureRecognizer(panGestureRecognizer)
+        panGestureRecognizer.delegate = self
     }
 
     func setupInteractiveCard() {
@@ -47,12 +56,6 @@ class ModalCardView: UIViewController, ViewControllerIdentifiable {
     }
 }
 
-private extension ModalCardView {
-    func setupView() {
-        view.backgroundColor = .white
-    }
-}
-
 extension ModalCardView: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController,
                               animationControllerFor operation: UINavigationController.Operation,
@@ -68,6 +71,38 @@ extension ModalCardView: UINavigationControllerDelegate {
         }
         
         return nil
+    }
+}
+
+extension ModalCardView: UIGestureRecognizerDelegate {
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
+        let window = UIApplication.keyWindow!
+
+        switch recognizer.state {
+        case .began:
+            let velocity = recognizer.velocity(in: window)
+            guard abs(velocity.x) > abs(velocity.y) else { return }
+                        
+        case .ended:
+            let horizontalVelocity = recognizer.velocity(in: window).x
+            let verticalVelocity = recognizer.velocity(in: window).y
+            let translation = recognizer.translation(in: window)
+
+            if horizontalVelocity > 500 && abs(horizontalVelocity) > abs(verticalVelocity)
+            {
+                navigationController?.popViewController(animated: true)
+            }
+            
+        default:
+            break
+            // No op
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        return true
     }
 }
 

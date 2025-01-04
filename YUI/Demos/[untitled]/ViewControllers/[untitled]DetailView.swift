@@ -187,7 +187,7 @@ extension UntitledDetailView: UIGestureRecognizerDelegate {
     }
 }
 
-extension UntitledDetailView: SharedTransitioning, FBPaperTransitioning {
+extension UntitledDetailView: SharedTransitioning {
     var sharedFrame: CGRect {
         imageView.frameInWindow ?? .zero
     }

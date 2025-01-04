@@ -5,6 +5,7 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
     var nameIdentifier: String = "Path"
     
     private let transitionAnimator = FBPaperTransitionAnimationController()
+    private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
     public var selectedIndexPath: IndexPath?
     
     private lazy var clockTooltip = PathClockTooltip()
@@ -67,6 +68,10 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
             $0.height == 40
             $0.width == 120
         }
+        
+        // Add pan gesture recognizer that will activate the interactive pop transition
+        view.addGestureRecognizer(panGestureRecognizer)
+        panGestureRecognizer.delegate = self
     }
     
     private func setupCells() {
@@ -243,6 +248,44 @@ extension PathView {
     }
 }
 
+extension PathView: UIGestureRecognizerDelegate {
+    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
+        let contentOffsetY = collectionView.contentOffset.y
+
+        let window = UIApplication.keyWindow!
+
+        switch recognizer.state {
+        case .began:
+            let velocity = recognizer.velocity(in: window)
+            guard abs(velocity.x) > abs(velocity.y) else { return }
+            
+            collectionView.isScrollEnabled = false
+            
+        case .changed, .ended:
+            let horizontalVelocity = recognizer.velocity(in: window).x
+            let verticalVelocity = recognizer.velocity(in: window).y
+            let translation = recognizer.translation(in: window)
+
+            if horizontalVelocity > 500 && abs(horizontalVelocity) > abs(verticalVelocity)
+            {
+                navigationController?.popViewController(animated: true)
+            }
+            
+            collectionView.isScrollEnabled = true
+
+        default:
+            collectionView.isScrollEnabled = true
+        }
+        
+        collectionView.contentOffset.y = contentOffsetY
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        return true
+    }
+}
 
 extension PathView: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController,

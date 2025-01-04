@@ -161,7 +161,7 @@ This demo replicates the [Twitter logo animation](https://iosdevtips.co/post/884
 
 - [ ] Disallow multiple touch inputs during transitions
 - [ ] Experiment with rubber banding individual cells in `UICollectionView`s
-- [ ] Swipe down/from left edge on demos to return to home view
+- [x] Swipe down/from left edge on demos to return to home view
 
 ## Resources
 
