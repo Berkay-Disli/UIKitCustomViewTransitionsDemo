@@ -97,6 +97,11 @@ extension FBPaperTransitionAnimationController {
             // Reset collectionView to original state
             collectionView.setCollectionViewLayout(fromViewController.layout, animated: false)
             fromViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor + 40
+            collectionView.visibleCells.forEach { cell in
+                let cell = cell as! FBPaperHomeViewCell
+                cell.imageContainer.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
+                cell.titleLabel.layer.opacity = 1
+            }
             
             backdrop.removeFromSuperview()
             context.completeTransition(true)
