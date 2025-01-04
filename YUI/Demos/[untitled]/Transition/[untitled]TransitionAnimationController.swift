@@ -129,18 +129,14 @@ extension UntitledTransitionAnimationController {
         }
         context.containerView.insertSubview(backdrop, at: 0)
         
-        UIView.animate(
-            withDuration: 0.4,
-            delay: 0,
-            usingSpringWithDamping: 2,
-            initialSpringVelocity: 0.4,
-            options: [])
-        {
+        let animation = {
             toView.layer.opacity = 1
             toView.transform = .identity
             fromView.transform = fromTransform
             fromSharedView.transform = sharedViewTransform
-        } completion: { _ in
+        }
+        
+        let completion = {
             fromPlaceholder.removeFromSuperview()
             toPlaceholder.removeFromSuperview()
             fromSharedView.removeFromSuperview()
@@ -153,6 +149,22 @@ extension UntitledTransitionAnimationController {
             }
             
             context.completeTransition(!isCancelled)
+        }
+        
+        if context.isInteractive {
+            UIView.animate(duration: config.duration, curve: config.curve) { animation() } completion: { completion() }
+        } else {
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0,
+                options: [.beginFromCurrentState])
+            {
+                animation()
+            } completion: { _ in
+                completion()
+            }
         }
     }
     

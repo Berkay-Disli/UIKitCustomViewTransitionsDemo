@@ -197,7 +197,6 @@ extension UntitledGridView: UIGestureRecognizerDelegate {
         case .ended:
             let horizontalVelocity = recognizer.velocity(in: window).x
             let verticalVelocity = recognizer.velocity(in: window).y
-            let translation = recognizer.translation(in: window)
 
             if horizontalVelocity > 500 && abs(horizontalVelocity) > abs(verticalVelocity)
             {
