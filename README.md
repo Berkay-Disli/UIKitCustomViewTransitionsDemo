@@ -109,17 +109,27 @@ static func transform(parent: CGRect,
 
 Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination view appears to grow to take up the entire screen, via manipulation of the mask.
 
-### ModalCard demo
-
-This demo demonstrates a three-stage modal that is inset from the edges of the screen, which is apparently very trendy nowadays (see: [Family](https://family.co)). It feature custom rubber-banding and drag gesture logic, allowing for fluid navigation between the different states without any jarring locking.
-
 ### [untitled] transition demo
 
 It is crucial that the `sharedView` that both view controllers implement as part of the `SharedTransitioning` protocol are **copies** instead of references, since it becomes **much easier** to reason about and manipulate them for our custom transitions. Otherwise, we would have to involve convoluted logic to manage and restore states before, during and after the transition. With copies, we can easily create and destroy them on demand with little overhead. 
 
 The only caveat is if the view is complex, this operation might take much longer. The alternative is to manipulate the source and destination views themselves using clever tricks like masks, as is the case with the Instagram transition demo.
 
+### ModalCard demo
+
+This demo demonstrates a three-stage modal that is inset from the edges of the screen, which is apparently very trendy nowadays (see: [Family](https://family.co)). It feature custom rubber-banding and drag gesture logic, allowing for fluid navigation between the different states without any jarring locking.
+
+### Path demo
+
+This demo replicates the [neat clock tooltip](https://littlebigdetails.com/post/15886779130/path-when-scrolling-in-the-app-the-clock) that appears on scroll in Path. The position of the tooltip is synced with the scrollbar via overriding various `UIScrollView` methods, and we convert the center point of the tooltip in its coordinate system to the coordinate system of the `UICollectionView` to determine which post the tooltip is currently intersecting with. Then, we can update the tooltip to show the correct date and time for that post.
+
 ## TODOs
+
+### Facebook Paper transition demo
+
+- [x] Implement Facebook Paper card transition
+- [ ] Add interactive gesture to Facebook Paper cards
+- [ ] Make into its own demo instead of the home view
 
 ### Instagram transition demo
 
@@ -134,21 +144,20 @@ The only caveat is if the view is complex, this operation might take much longer
 - [x] Implement [untitled] album transition with slide over
 - [ ] Adjust curves on interactive transition
 
-### Facebook Paper transition demo
+### Path demo
 
-- [x] Implement Facebook Paper card transition
-- [ ] Add interactive gesture to Facebook Paper cards
+- [ ] Build out rest of Path interface (custom cell layouts, bouncy header, etc.)
 
 ### Other demos
 
-- [ ] Path timeline scroll
+- [x] Path timeline scroll
 - [ ] Twitter side-bar half transition
 
 ### General
 
 - [ ] Disallow multiple touch inputs during transitions
 - [ ] Experiment with rubber banding individual cells in `UICollectionView`s
-- [ ] Swipe down on demos to return to home view
+- [ ] Swipe down/from left edge on demos to return to home view
 
 ## Resources
 

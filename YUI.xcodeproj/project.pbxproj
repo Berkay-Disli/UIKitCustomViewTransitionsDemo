@@ -60,6 +60,8 @@
 		84C4B0F22D2583F500F76C86 /* ModalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F12D2583F500F76C86 /* ModalCard.swift */; };
 		84C4B0F42D25842000F76C86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F32D25841E00F76C86 /* Constants.swift */; };
 		84C4B0F82D25874600F76C86 /* ModalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F72D25874600F76C86 /* ModalCardView.swift */; };
+		84C4B0FA2D27637200F76C86 /* PathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F92D27636C00F76C86 /* PathCell.swift */; };
+		84C4B0FC2D2763B900F76C86 /* PathClockTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0FB2D2763B900F76C86 /* PathClockTooltip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +121,8 @@
 		84C4B0F12D2583F500F76C86 /* ModalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCard.swift; sourceTree = "<group>"; };
 		84C4B0F32D25841E00F76C86 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84C4B0F72D25874600F76C86 /* ModalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCardView.swift; sourceTree = "<group>"; };
+		84C4B0F92D27636C00F76C86 /* PathCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCell.swift; sourceTree = "<group>"; };
+		84C4B0FB2D2763B900F76C86 /* PathClockTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathClockTooltip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +369,8 @@
 		84C4B0EC2D24FDE000F76C86 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84C4B0FB2D2763B900F76C86 /* PathClockTooltip.swift */,
+				84C4B0F92D27636C00F76C86 /* PathCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 				8401BC092D1F3BFA0030CD27 /* PhotoHeader.swift in Sources */,
 				8401BC0B2D1F3BFA0030CD27 /* LayoutClosure.swift in Sources */,
 				8401BC0C2D1F3BFA0030CD27 /* UIApplication+Extensions.swift in Sources */,
+				84C4B0FA2D27637200F76C86 /* PathCell.swift in Sources */,
 				8401BC0D2D1F3BFA0030CD27 /* LayoutDimension.swift in Sources */,
 				8401BC522D2102F80030CD27 /* FBPaperTransitionAnimationController.swift in Sources */,
 				8401BC532D2102F80030CD27 /* FBPaperTransitionInteractionController.swift in Sources */,
@@ -507,6 +514,7 @@
 				8401BC1B2D1F3BFA0030CD27 /* PhotoFooter.swift in Sources */,
 				8401BC362D1F63DF0030CD27 /* [untitled]TransitionAnimationController.swift in Sources */,
 				8401BC1C2D1F3BFA0030CD27 /* CGSize+Extensions.swift in Sources */,
+				84C4B0FC2D2763B900F76C86 /* PathClockTooltip.swift in Sources */,
 				8401BC322D1F62970030CD27 /* [untitled]GridView.swift in Sources */,
 				8401BC1D2D1F3BFA0030CD27 /* CGRect+Extensions.swift in Sources */,
 				8401BC1F2D1F3BFA0030CD27 /* PhotoDetailView.swift in Sources */,
