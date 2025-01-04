@@ -194,7 +194,16 @@ extension FBPaperTransitionAnimationController {
         }
     }
     
-    private func setup(with context: UIViewControllerContextTransitioning) -> (UIView, UIView, UIView, UIView, UIViewController, UIViewController)? {
+    private func setup(
+        with context: UIViewControllerContextTransitioning
+    ) -> (
+        UIView,
+        UIView,
+        UIView,
+        UIView,
+        UIViewController,
+        UIViewController
+    )? {
         // Get the source and destination views
         guard let toView = context.view(forKey: .to),
               let fromView = context.view(forKey: .from) else
@@ -222,7 +231,8 @@ extension FBPaperTransitionAnimationController {
         }
         
         // Return necessary components for the transition
-        return (fromView, fromSharedView, toView,
-                toSharedView, fromViewController, toViewController)
+        return (fromView, fromSharedView,
+                toView, toSharedView,
+                fromViewController, toViewController)
     }
 }

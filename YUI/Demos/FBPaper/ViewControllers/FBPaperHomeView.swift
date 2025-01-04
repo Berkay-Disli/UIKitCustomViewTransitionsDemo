@@ -11,7 +11,8 @@ class FBPaperHomeView: UIViewController {
         PhotoGridView(),
         UntitledGridView(),
         ModalCardView(),
-        PathView()
+        PathView(),
+        TwitterSplashScreenView()
     ]
     
     public lazy var layout = UICollectionViewFlowLayout().then {
@@ -129,7 +130,7 @@ class FBPaperHomeView: UIViewController {
         }.layout {
             $0.top == title.bottomAnchor + 12
             $0.leading == view.leadingAnchor + 20
-            $0.width == UIScreen.main.bounds.width * 0.7
+            $0.width == UIScreen.main.bounds.width * (UIScreen.main.displayCornerRadius == 0.0 ? 0.8 : 0.7)
         }
     }
 }

@@ -62,6 +62,7 @@
 		84C4B0F82D25874600F76C86 /* ModalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F72D25874600F76C86 /* ModalCardView.swift */; };
 		84C4B0FA2D27637200F76C86 /* PathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F92D27636C00F76C86 /* PathCell.swift */; };
 		84C4B0FC2D2763B900F76C86 /* PathClockTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0FB2D2763B900F76C86 /* PathClockTooltip.swift */; };
+		84C4B0FE2D292DD500F76C86 /* TwitterSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0FD2D292DD400F76C86 /* TwitterSplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +124,7 @@
 		84C4B0F72D25874600F76C86 /* ModalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCardView.swift; sourceTree = "<group>"; };
 		84C4B0F92D27636C00F76C86 /* PathCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCell.swift; sourceTree = "<group>"; };
 		84C4B0FB2D2763B900F76C86 /* PathClockTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathClockTooltip.swift; sourceTree = "<group>"; };
+		84C4B0FD2D292DD400F76C86 /* TwitterSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +359,7 @@
 		84C4B0EB2D24FDB100F76C86 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				84C4B0FF2D292DD700F76C86 /* Twitter */,
 				84C4B0F02D2583E500F76C86 /* ModalCard */,
 				8401BC402D1FBB930030CD27 /* Instagram */,
 				8401BC412D1FBB9B0030CD27 /* [untitled] */,
@@ -404,6 +407,22 @@
 			isa = PBXGroup;
 			children = (
 				84C4B0F72D25874600F76C86 /* ModalCardView.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84C4B0FF2D292DD700F76C86 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B1002D292DE200F76C86 /* ViewControllers */,
+			);
+			path = Twitter;
+			sourceTree = "<group>";
+		};
+		84C4B1002D292DE200F76C86 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B0FD2D292DD400F76C86 /* TwitterSplashScreenView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -511,6 +530,7 @@
 				8401BC182D1F3BFA0030CD27 /* CacheableImageView.swift in Sources */,
 				8401BC1A2D1F3BFA0030CD27 /* UICollectionReusableView+Extensions.swift in Sources */,
 				8401BC492D20FB550030CD27 /* FBPaperHomeView.swift in Sources */,
+				84C4B0FE2D292DD500F76C86 /* TwitterSplashScreenView.swift in Sources */,
 				8401BC1B2D1F3BFA0030CD27 /* PhotoFooter.swift in Sources */,
 				8401BC362D1F63DF0030CD27 /* [untitled]TransitionAnimationController.swift in Sources */,
 				8401BC1C2D1F3BFA0030CD27 /* CGSize+Extensions.swift in Sources */,
