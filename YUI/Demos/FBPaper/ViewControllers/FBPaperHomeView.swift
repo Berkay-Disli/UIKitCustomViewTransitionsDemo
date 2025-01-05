@@ -8,12 +8,17 @@ class FBPaperHomeView: UIViewController {
     }
     
     private var homeViews: [UIViewController] = [
-        PhotoGridView(),
-        UntitledGridView(),
-        ModalCardView(),
+        TwitterSplashScreenView(),
         PathView(),
-        TwitterSplashScreenView()
+        ModalCardView(),
+        UntitledGridView(),
+        PhotoGridView()
     ]
+    
+    public lazy var containerView = UIView()
+    public lazy var settingsView = UIView()
+    public lazy var titleLabel = UILabel()
+    public lazy var descriptionLabel = UILabel()
     
     public lazy var layout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
@@ -41,6 +46,7 @@ class FBPaperHomeView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        view.backgroundColor = .white
         setupView()
     }
     
@@ -50,14 +56,35 @@ class FBPaperHomeView: UIViewController {
     }
     
     private func setupView() {
+        containerView.then {
+            view.addSubview($0)
+            view.layer.cornerCurve = .continuous
+            view.layer.cornerRadius = UIScreen.main.displayCornerRadius
+            view.layer.masksToBounds = true
+        }.layout {
+            $0.leading == view.leadingAnchor
+            $0.trailing == view.trailingAnchor
+            $0.top == view.topAnchor
+            $0.bottom == view.bottomAnchor
+        }
+        
         let backgroundImage = UIImageView(image: UIImage(named: "Background"))
         backgroundImage.do {
             $0.contentMode = .scaleAspectFill
-            view.fillWith($0)
+            $0.layer.cornerCurve = .continuous
+            $0.layer.cornerRadius = UIScreen.main.displayCornerRadius
+            $0.layer.masksToBounds = true
+            containerView.fillWith($0)
         }
         
-        setupInfo()
+        setupHeader()
         setupCollectionView()
+        setupSettings()
+        setupPanGesture()
+    }
+    
+    private func setupPanGesture() {
+        containerView.addGestureRecognizer(panGestureRecognizer)
     }
     
     public var collectionViewHeightConstraint: NSLayoutConstraint?
@@ -67,11 +94,11 @@ class FBPaperHomeView: UIViewController {
             $0.contentInsetAdjustmentBehavior = .never
             $0.showsHorizontalScrollIndicator = false
             $0.alwaysBounceVertical = false
-            view.addSubview($0)
+            containerView.addSubview($0)
         }.layout {
-            $0.leading == view.leadingAnchor
-            $0.trailing == view.trailingAnchor
-            $0.bottom == view.bottomAnchor
+            $0.leading == containerView.leadingAnchor
+            $0.trailing == containerView.trailingAnchor
+            $0.bottom == containerView.bottomAnchor
             
             // Create and store the height constraint
             let heightConstraint = collectionView.heightAnchor.constraint(
@@ -82,8 +109,7 @@ class FBPaperHomeView: UIViewController {
         }
     }
     
-    private func setupInfo() {
-        let title = UILabel()
+    private func setupHeader() {
         let titleAS = NSAttributedString(
             string: "YUI",
             attributes: [
@@ -92,15 +118,14 @@ class FBPaperHomeView: UIViewController {
                 NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.6)
             ]
         )
-        title.attributedText = titleAS
-        title.then {
-            view.addSubview($0)
+        titleLabel.attributedText = titleAS
+        titleLabel.then {
+            containerView.addSubview($0)
         }.layout {
             $0.top == view.safeAreaLayoutGuide.topAnchor + 20
-            $0.leading == view.leadingAnchor + 20
+            $0.leading == containerView.leadingAnchor + 20
         }
         
-        let description = UILabel()
         let descriptionAS = NSAttributedString(
             string: "A gallery of custom view transitions and interfaces built entirely in UIKit. Inspired by apps like Instagram, Facebook Paper, Path, [untitled], and more.",
             attributes: [
@@ -109,24 +134,247 @@ class FBPaperHomeView: UIViewController {
                 NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)
             ]
         )
-        description.attributedText = descriptionAS
-        description.then {
-            view.addSubview($0)
+        descriptionLabel.attributedText = descriptionAS
+        descriptionLabel.then {
+            containerView.addSubview($0)
             $0.numberOfLines = 0
             $0.lineBreakMode = .byWordWrapping
         }.layout {
-            $0.top == title.bottomAnchor + 12
-            $0.leading == view.leadingAnchor + 20
-            $0.width == UIScreen.main.bounds.width * (UIScreen.main.displayCornerRadius == 0.0 ? 0.8 : 0.7)
+            $0.top == titleLabel.bottomAnchor + 12
+            $0.leading == containerView.leadingAnchor + 20
+            $0.width == UIScreen.main.bounds.width * (UIScreen.main.displayCornerRadius == 0.0 ? 0.74 : 0.7)
+        }
+        
+        let settingsButton = UIButton(configuration: .plain())
+        settingsButton.then {
+            let configuration = UIImage.SymbolConfiguration(pointSize: 12, weight: .heavy)
+            let image = UIImage(systemName: "ellipsis", withConfiguration: configuration)
+            $0.setImage(image, for: .normal)
+            $0.tintColor = .white
+            $0.addAction(settingsAction, for: .touchUpInside)
+            $0.backgroundColor = .white.withAlphaComponent(0.2)
+            $0.layer.cornerCurve = .continuous
+            $0.layer.cornerRadius = 16
+            $0.widthAnchor.constraint(equalToConstant: 44).isActive = true
+            $0.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            containerView.addSubview($0)
+        }.layout {
+            $0.top == view.safeAreaLayoutGuide.topAnchor + 20
+            $0.trailing == containerView.trailingAnchor - 20
+        }
+    }
+    
+    private var settingsAction: UIAction {
+        UIAction(handler: { [weak self] _ in self?.toggleSettings() })
+    }
+    
+    private func toggleSettings() {
+        if settingsIsShowing {
+            settingsIsShowing = false
+            
+            UIView.animate(withDuration: 0.6,
+                          delay: 0,
+                          usingSpringWithDamping: 0.8,
+                          initialSpringVelocity: 0.6,
+                          options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState])
+            {
+                self.containerView.transform = .identity
+                self.settingsView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                self.settingsView.layer.opacity = 0
+            }
+        } else {
+            settingsIsShowing = true
+            
+            UIView.animate(withDuration: 0.6,
+                          delay: 0,
+                          usingSpringWithDamping: 0.8,
+                          initialSpringVelocity: 0.6,
+                          options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState])
+            {
+                self.containerView.transform = CGAffineTransform(translationX: 0, y: self.maxSettingsTranslation)
+                    .concatenating(CGAffineTransform(scaleX: self.scaleFactorWhenSettingsVisible,
+                                                   y: self.scaleFactorWhenSettingsVisible))
+                self.settingsView.transform = .identity
+                self.settingsView.layer.opacity = 1
+            }
+        }
+    }
+    
+    private var settingsIsShowing: Bool = false
+    
+    private func setupSettings() {
+        settingsView.backgroundColor = .white
+        
+        settingsView.then {
+            view.insertSubview($0, belowSubview: containerView)
+        }.layout {
+            $0.leading == view.leadingAnchor
+            $0.trailing == view.trailingAnchor
+            $0.top == view.topAnchor
+            $0.bottom == view.bottomAnchor
+        }
+        
+        let gitHubLink = UIButton(type: .custom)
+        let gitHubLinkAS = NSAttributedString(
+            string: "View project on GitHub",
+            attributes: [
+                NSAttributedString.Key.kern: -0.2,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light),
+                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.9)
+            ]
+        )
+        gitHubLink.setAttributedTitle(gitHubLinkAS, for: .normal)
+        gitHubLink.then {
+            settingsView.addSubview($0)
+            $0.addAction(UIAction { _ in
+                    UIApplication.shared.open(URL(string: "https://github.com/yihui-hu/YUI")!)
+                }, for: .touchUpInside)
+        }.layout {
+            $0.top == view.safeAreaLayoutGuide.topAnchor + 20
+            $0.leading == settingsView.leadingAnchor + 20
+        }
+        
+        let siteLink = UIButton(type: .custom)
+        let siteLinkAS = NSAttributedString(
+            string: "View other works",
+            attributes: [
+                NSAttributedString.Key.kern: -0.2,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light),
+                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.9)
+            ]
+        )
+        siteLink.setAttributedTitle(siteLinkAS, for: .normal)
+        siteLink.then {
+            settingsView.addSubview($0)
+            $0.addAction(UIAction { _ in
+                    UIApplication.shared.open(URL(string: "https://yihui.work")!)
+                }, for: .touchUpInside)
+        }.layout {
+            $0.top == gitHubLink.bottomAnchor + 4
+            $0.leading == settingsView.leadingAnchor + 20
+        }
+        
+        let twitterLink = UIButton(type: .custom)
+        let twitterLinkAS = NSAttributedString(
+            string: "Follow on Twitter",
+            attributes: [
+                NSAttributedString.Key.kern: -0.2,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .light),
+                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.9)
+            ]
+        )
+        twitterLink.setAttributedTitle(twitterLinkAS, for: .normal)
+        twitterLink.then {
+            settingsView.addSubview($0)
+            $0.addAction(UIAction { _ in
+                    UIApplication.shared.open(URL(string: "https://twitter.com/_yihui")!)
+                }, for: .touchUpInside)
+        }.layout {
+            $0.top == siteLink.bottomAnchor + 4
+            $0.leading == settingsView.leadingAnchor + 20
+        }
+    }
+    
+    private lazy var panGestureRecognizer: UIPanGestureRecognizer = {
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        gesture.delegate = self
+        return gesture
+    }()
+
+    private var initialPanTransform: CGAffineTransform = .identity
+    private let maxSettingsTranslation: CGFloat = UIScreen.main.bounds.height * 0.5
+    private let scaleFactorWhenSettingsVisible: CGFloat = 0.96
+    
+    @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: view)
+        let velocity = gesture.velocity(in: view)
+        
+        switch gesture.state {
+        case .began:
+            initialPanTransform = containerView.transform
+            
+        case .changed:
+            let progress = abs(translation.y / maxSettingsTranslation)
+            
+            if !settingsIsShowing, translation.y >= 0 {
+                let scale = 1.0 - ((1.0 - scaleFactorWhenSettingsVisible) * progress)
+                let currentTransform = CGAffineTransform(translationX: 0, y: translation.y)
+                    .concatenating(CGAffineTransform(scaleX: scale, y: scale))
+                
+                containerView.transform = currentTransform
+                settingsView.transform = CGAffineTransform(scaleX: 0.9 + (0.1 * progress),
+                                                           y: 0.9 + (0.1 * progress))
+                settingsView.layer.opacity = Float(progress)
+            } else if settingsIsShowing, translation.y <= 0 {
+                let scale = 1 + ((1 - scaleFactorWhenSettingsVisible) * progress)
+                let currentTransform = CGAffineTransform(translationX: 0, y: translation.y)
+                    .concatenating(CGAffineTransform(scaleX: scale, y: scale))
+                
+                containerView.transform = initialPanTransform.concatenating(currentTransform)
+                settingsView.transform = CGAffineTransform(scaleX: 1 - (0.1 * progress),
+                                                           y: 1 - (0.1 * progress))
+                settingsView.layer.opacity = Float(1 - progress)
+            }
+            
+        case .ended, .cancelled:
+            let shouldShowSettings: Bool
+            
+            if abs(velocity.y) > 500 {
+                shouldShowSettings = velocity.y > 0
+            } else {
+                let progress = translation.y / maxSettingsTranslation
+                shouldShowSettings = progress > 0.5
+            }
+            
+            if shouldShowSettings != settingsIsShowing {
+                toggleSettings()
+            } else {
+                UIView.animate(withDuration: 0.4,
+                             delay: 0,
+                             usingSpringWithDamping: 1,
+                             initialSpringVelocity: 0,
+                             options: [.curveEaseOut])
+                {
+                    if self.settingsIsShowing {
+                        self.containerView.transform = CGAffineTransform(translationX: 0, y: self.maxSettingsTranslation)
+                            .concatenating(CGAffineTransform(scaleX: self.scaleFactorWhenSettingsVisible,
+                                                           y: self.scaleFactorWhenSettingsVisible))
+                        self.settingsView.transform = .identity
+                        self.settingsView.layer.opacity = 1
+                    } else {
+                        self.containerView.transform = .identity
+                        self.settingsView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        self.settingsView.layer.opacity = 0
+                    }
+                }
+            }
+            
+        default:
+            break
         }
     }
 }
 
 extension FBPaperHomeView: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
-    {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
+    ) -> Bool {
+        // To prevent conflict with scrolling of UICollectionView, check
+        // if vertical movement is significantly more than horizontal
+        if otherGestureRecognizer.view is UICollectionView {
+            if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
+                let velocity = panGesture.velocity(in: view)
+                return abs(velocity.y) > abs(velocity.x) * 1.5
+            }
+        }
         return true
+    }
+
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panGesture = gestureRecognizer as? UIPanGestureRecognizer else { return true }
+        let velocity = panGesture.velocity(in: view)
+        return abs(velocity.y) > abs(velocity.x) * 1.5
     }
 }
 
@@ -156,9 +404,30 @@ extension FBPaperHomeView: UICollectionViewDelegate, UICollectionViewDataSource 
                         didSelectItemAt indexPath: IndexPath)
     
     {
-        selectedIndexPath = indexPath
-        navigationController?.pushViewController(homeViews[indexPath.item],
-                                                 animated: true)
+        if settingsIsShowing {
+            settingsIsShowing = false
+            
+            UIView.animate(withDuration: 0.4,
+                           delay: 0,
+                           usingSpringWithDamping: 2,
+                           initialSpringVelocity: 0,
+                           options: [.curveEaseInOut, .allowUserInteraction])
+            {
+                self.containerView.transform = .identity
+                self.settingsView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                self.settingsView.layer.opacity = 0
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+                self.selectedIndexPath = indexPath
+                self.navigationController?.pushViewController(self.homeViews[indexPath.item],
+                                                              animated: true)
+            }
+        } else {
+            self.selectedIndexPath = indexPath
+            self.navigationController?.pushViewController(self.homeViews[indexPath.item],
+                                                          animated: true)
+        }
     }
 }
 

@@ -152,7 +152,7 @@ extension UntitledTransitionAnimationController {
         }
         
         if context.isInteractive {
-            UIView.animate(duration: config.duration, curve: config.curve) { animation() } completion: { completion() }
+            UIView.animate(duration: 0.4, curve: config.curve) { animation() } completion: { completion() }
         } else {
             UIView.animate(
                 withDuration: 0.4,
