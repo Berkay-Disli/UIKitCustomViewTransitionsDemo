@@ -20,6 +20,7 @@ class HomeView: UIViewController {
     public lazy var settingsView = UIView()
     public lazy var titleLabel = UILabel()
     public lazy var descriptionLabel = UILabel()
+    public lazy var settingsButton = UIButton(configuration: .plain())
     
     public lazy var layout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
@@ -146,7 +147,6 @@ class HomeView: UIViewController {
             $0.width == UIScreen.main.bounds.width * (UIScreen.main.displayCornerRadius == 0.0 ? 0.74 : 0.7)
         }
         
-        let settingsButton = UIButton(configuration: .plain())
         settingsButton.then {
             let configuration = UIImage.SymbolConfiguration(pointSize: 12, weight: .heavy)
             let image = UIImage(systemName: "ellipsis", withConfiguration: configuration)

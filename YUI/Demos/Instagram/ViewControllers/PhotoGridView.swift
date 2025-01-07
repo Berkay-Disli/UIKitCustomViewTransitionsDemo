@@ -19,7 +19,6 @@ final class PhotoGridView: UIViewController, ViewControllerIdentifiable {
     
     private let transitionAnimator = SharedTransitionAnimationController()
     private let fbPaperTransitionAnimator = HomeTransitionAnimationController()
-    private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
     private let header = PhotoGridViewHeader(title: "Photos")
     
     private lazy var layout = UICollectionViewFlowLayout().then {
@@ -143,10 +142,6 @@ final class PhotoGridView: UIViewController, ViewControllerIdentifiable {
         setupHeader()
         setupCollectionView()
         setupBackButton()
-        
-        // Add pan gesture recognizer that will activate the interactive pop transition
-        view.addGestureRecognizer(panGestureRecognizer)
-        panGestureRecognizer.delegate = self
     }
     
     private func setupHeader() {
@@ -288,47 +283,6 @@ extension PhotoGridView: UINavigationControllerDelegate {
         
         // Use default animation otherwise
         return nil
-    }
-}
-
-extension PhotoGridView: UIGestureRecognizerDelegate {
-    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
-        let contentOffsetY = collectionView.contentOffset.y
-
-        let window = UIApplication.keyWindow!
-
-        switch recognizer.state {
-        case .began:
-            let velocity = recognizer.velocity(in: window)
-            guard abs(velocity.x) > abs(velocity.y) else { return }
-            
-            collectionView.isScrollEnabled = false
-            
-        case .changed:
-            break
-            
-        case .ended:
-            let horizontalVelocity = recognizer.velocity(in: window).x
-            let verticalVelocity = recognizer.velocity(in: window).y
-
-            if horizontalVelocity > 500 && abs(horizontalVelocity) > abs(verticalVelocity)
-            {
-                navigationController?.popViewController(animated: true)
-            }
-            
-            collectionView.isScrollEnabled = true
-
-        default:
-            collectionView.isScrollEnabled = true
-        }
-        
-        collectionView.contentOffset.y = contentOffsetY
-    }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
-    {
-        return true
     }
 }
 

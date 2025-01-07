@@ -93,6 +93,13 @@ extension HomeTransitionAnimationController {
             toView.layer.cornerCurve = .continuous
             toView.layer.cornerRadius = UIScreen.main.displayCornerRadius
             
+            fromViewController.titleLabel.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height * 0.4)
+            fromViewController.descriptionLabel.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height * 0.4)
+            fromViewController.settingsButton.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height * 0.4)
+            fromViewController.titleLabel.layer.opacity = 0
+            fromViewController.descriptionLabel.layer.opacity = 0
+            fromViewController.settingsButton.layer.opacity = 0
+            
             backdrop.layer.opacity = 0.5
         } completion: { _ in
             // Reset collectionView to original state
@@ -103,6 +110,13 @@ extension HomeTransitionAnimationController {
                 cell.imageContainer.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
                 cell.titleLabel.layer.opacity = 1
             }
+            
+            fromViewController.titleLabel.transform = .identity
+            fromViewController.descriptionLabel.transform = .identity
+            fromViewController.settingsButton.transform = .identity
+            fromViewController.titleLabel.layer.opacity = 1
+            fromViewController.descriptionLabel.layer.opacity = 1
+            fromViewController.settingsButton.layer.opacity = 1
             
             backdrop.removeFromSuperview()
             context.completeTransition(true)
@@ -159,6 +173,13 @@ extension HomeTransitionAnimationController {
         }
         
         fromView.layer.opacity = 1
+        
+        toViewController.titleLabel.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height * 0.4)
+        toViewController.descriptionLabel.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height * 0.4)
+        toViewController.settingsButton.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height * 0.4)
+        toViewController.titleLabel.layer.opacity = 0
+        toViewController.descriptionLabel.layer.opacity = 0
+        toViewController.settingsButton.layer.opacity = 0
 
         UIView.animate(
             withDuration: 0.5,
@@ -178,6 +199,13 @@ extension HomeTransitionAnimationController {
                 cell.imageContainer.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
                 cell.titleLabel.layer.opacity = 1
             }
+            
+            toViewController.titleLabel.transform = .identity
+            toViewController.descriptionLabel.transform = .identity
+            toViewController.settingsButton.transform = .identity
+            toViewController.titleLabel.layer.opacity = 1
+            toViewController.descriptionLabel.layer.opacity = 1
+            toViewController.settingsButton.layer.opacity = 1
             
             fromView.layer.opacity = 0
             fromView.transform = fromViewTransform

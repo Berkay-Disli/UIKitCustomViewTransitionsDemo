@@ -17,6 +17,7 @@ final class DemoTemplate: UIViewController, ViewControllerIdentifiable {
     }
     
     private func setupViews() {
+        view.layer.masksToBounds = true
         // Setup views here
     }
         

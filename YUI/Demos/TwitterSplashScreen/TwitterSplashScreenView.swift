@@ -5,9 +5,7 @@ import UIKit
 final class TwitterSplashScreenView: UIViewController, ViewControllerIdentifiable {
     var stringIdentifier: String = "TwitterSplashScreenView"
     var nameIdentifier: String = "Twitter Splash Screen"
-    
-    private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-    
+        
     private lazy var twitterScreenContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -53,6 +51,7 @@ final class TwitterSplashScreenView: UIViewController, ViewControllerIdentifiabl
     }
     
     private func setupViews() {
+        view.layer.masksToBounds = true
         view.backgroundColor = .twitterBlue
         
         twitterScreenContainerView.then {
@@ -75,10 +74,6 @@ final class TwitterSplashScreenView: UIViewController, ViewControllerIdentifiabl
             $0.center = view.center
             twitterScreenContainerView.mask = $0
         }
-        
-        // Add pan gesture recognizer that will activate the interactive pop transition
-        view.addGestureRecognizer(panGestureRecognizer)
-        panGestureRecognizer.delegate = self
     }
     
     private func startAnimation() {
@@ -133,38 +128,6 @@ final class TwitterSplashScreenView: UIViewController, ViewControllerIdentifiabl
         }
     }
 }
-
-extension TwitterSplashScreenView: UIGestureRecognizerDelegate {
-    @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
-        let window = UIApplication.keyWindow!
-
-        switch recognizer.state {
-        case .began:
-            let velocity = recognizer.velocity(in: window)
-            guard abs(velocity.x) > abs(velocity.y) else { return }
-                        
-        case .ended:
-            let horizontalVelocity = recognizer.velocity(in: window).x
-            let verticalVelocity = recognizer.velocity(in: window).y
-
-            if horizontalVelocity > 500 && abs(horizontalVelocity) > abs(verticalVelocity)
-            {
-                navigationController?.popViewController(animated: true)
-            }
-            
-        default:
-            break
-            // No op
-        }
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
-    {
-        return true
-    }
-}
-
 
 extension TwitterSplashScreenView: HomeTransitioning {
     var sharedView: UIView? {

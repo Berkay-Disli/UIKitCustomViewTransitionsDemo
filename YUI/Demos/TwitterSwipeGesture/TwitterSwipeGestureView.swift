@@ -62,6 +62,7 @@ final class TwitterSwipeGestureView: UIViewController, ViewControllerIdentifiabl
     }
     
     private func setupViews() {
+        view.layer.masksToBounds = true
         view.backgroundColor = .white
         
         collectionView.then {
