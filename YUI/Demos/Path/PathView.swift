@@ -93,7 +93,10 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
                 date: date,
                 relativeDate: relativeDate,
                 username: username,
-                description: description
+                description: description,
+                location: "Cupertino, CA",
+                iconType: Bool.random() ? .sun : .location,
+                reactionCount: Int.random(in: 0...100)
             )
             
             pathItems.append(item)

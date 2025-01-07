@@ -5,51 +5,81 @@ struct PathItem {
     let relativeDate: String
     let username: String
     let description: String
+    let location: String?
+    let iconType: IconType?
+    let reactionCount: Int?
+    
+    enum IconType {
+        case location
+        case sun
+    }
 }
 
 final class PathItemCell: UICollectionViewCell {
-    private let stackView: UIStackView = {
+    private let avatarView: UIView = {
+        let avatarView = UIView()
+        avatarView.backgroundColor = getRandomColor()
+        avatarView.contentMode = .scaleAspectFill
+        avatarView.clipsToBounds = true
+        avatarView.layer.cornerRadius = 20
+        return avatarView
+    }()
+    
+    private let iconContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        return imageView
+    }()
+    
+    private let contentStackView: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 8
-        stack.distribution = .fill
-        stack.alignment = .fill
+        stack.axis = .horizontal
+        stack.spacing = 12
+        stack.alignment = .top
         return stack
     }()
     
-    private let dateLabel: UILabel = {
-        let dateLabel = UILabel()
-        dateLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        dateLabel.textColor = .gray
-        
-        return dateLabel
-    }()
-    
-    private let usernameLabel: UILabel = {
-        let usernameLabel = UILabel()
-        usernameLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        usernameLabel.textColor = .black
-        
-        usernameLabel.layer.shadowColor = UIColor.white.cgColor
-        usernameLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
-        usernameLabel.layer.shadowOpacity = 1
-        usernameLabel.layer.shadowRadius = 0
-        
-        return usernameLabel
+    private let textStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 4
+        return stack
     }()
     
     private let descriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.font = .systemFont(ofSize: 16)
-        descriptionLabel.textColor = .black
-        descriptionLabel.numberOfLines = 0
-        
-        descriptionLabel.layer.shadowColor = UIColor.white.cgColor
-        descriptionLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
-        descriptionLabel.layer.shadowOpacity = 1
-        descriptionLabel.layer.shadowRadius = 0
-        
-        return descriptionLabel
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .black
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let locationLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15)
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    private let reactionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "face.smiling"), for: .normal)
+        button.tintColor = .black.withAlphaComponent(0.2)
+        return button
+    }()
+    
+    private let reactionCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15)
+        label.textColor = .black.withAlphaComponent(0.2)
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -62,28 +92,57 @@ final class PathItemCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        contentView.do {
-            $0.addSubview(stackView)
+        contentView.addSubview(contentStackView)
+        
+        avatarView.layout {
+            $0.width == 40
+            $0.height == 40
         }
         
-        stackView.then {
-            $0.addArrangedSubview(dateLabel)
-            $0.addArrangedSubview(usernameLabel)
-            $0.addArrangedSubview(descriptionLabel)
-        }.layout {
-            $0.top == contentView.topAnchor + 16
+        iconContainer.layout {
+            $0.width == 24
+            $0.height == 24
+        }
+        iconContainer.layer.cornerRadius = 12
+        iconContainer.addSubview(iconImageView)
+        
+        iconImageView.layout {
+            $0.centerX == iconContainer.centerXAnchor
+            $0.width == 16
+            $0.height == 16
+        }
+        
+        contentStackView.layout {
             $0.leading == contentView.leadingAnchor + 16
             $0.trailing == contentView.trailingAnchor - 16
+            $0.top == contentView.topAnchor + 16
             $0.bottom == contentView.bottomAnchor - 16
         }
         
-        dateLabel.layout { $0.height == 20 }
-        usernameLabel.layout { $0.height == 20 }
-        descriptionLabel.layout { $0.height >= 20 }
+        contentStackView.addArrangedSubview(avatarView)
         
-        // Add subtle bottom border
+        let rightContentStack = UIStackView()
+        rightContentStack.axis = .horizontal
+        rightContentStack.spacing = 8
+        rightContentStack.alignment = .top
+        
+        contentStackView.addArrangedSubview(rightContentStack)
+        
+        rightContentStack.addArrangedSubview(textStackView)
+        textStackView.addArrangedSubview(descriptionLabel)
+        textStackView.addArrangedSubview(locationLabel)
+        
+        let reactionStack = UIStackView()
+        reactionStack.axis = .horizontal
+        reactionStack.spacing = 4
+        reactionStack.alignment = .center
+        
+        rightContentStack.addArrangedSubview(reactionStack)
+        reactionStack.addArrangedSubview(reactionButton)
+        reactionStack.addArrangedSubview(reactionCountLabel)
+        
         let bottomBorder = CALayer()
-        bottomBorder.backgroundColor = UIColor.black.withAlphaComponent(0.1).cgColor
+        bottomBorder.backgroundColor = UIColor.black.withAlphaComponent(0.05).cgColor
         bottomBorder.frame = CGRect(x: 0,
                                     y: contentView.bounds.height - 1,
                                     width: contentView.bounds.width,
@@ -106,10 +165,31 @@ final class PathItemCell: UICollectionViewCell {
     }
     
     func configure(with item: PathItem) {
-        dateLabel.text = item.relativeDate
-        usernameLabel.text = item.username
         descriptionLabel.text = item.description
+        locationLabel.text = item.location
+        locationLabel.isHidden = item.location == nil
         
-        setNeedsLayout()
+        if let iconType = item.iconType {
+            iconContainer.isHidden = false
+            switch iconType {
+            case .sun:
+                iconContainer.backgroundColor = .systemYellow
+                iconImageView.image = UIImage(systemName: "sun.max.fill")
+            case .location:
+                iconContainer.backgroundColor = .systemBlue
+                iconImageView.image = UIImage(systemName: "location.fill")
+            }
+        } else {
+            iconContainer.isHidden = true
+        }
+        
+        if let reactionCount = item.reactionCount {
+            reactionButton.isHidden = false
+            reactionCountLabel.isHidden = false
+            reactionCountLabel.text = "\(reactionCount)"
+        } else {
+            reactionButton.isHidden = true
+            reactionCountLabel.isHidden = true
+        }
     }
 }
