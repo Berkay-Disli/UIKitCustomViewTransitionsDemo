@@ -131,9 +131,9 @@ This demo replicates the [Twitter logo animation](https://iosdevtips.co/post/884
 
 This demo replicates the [swipe gestures](https://x.com/X/status/1859757879613587698) that Twitter recently introduced, allowing users to perform quick actions when swiping from the left or right on a tweet.
 
-For this to work, a pan gesture is attached to the entire gesture view, and the cell that the user has their finger on when dragging is retrieved using the `indexPathForItem(at:)` and `cellForItem(at:)` methods. We perform a simple translation that follows the drag gesture on the focused cell, and also curve the corners and apply a drop shadow that gradually strengthens as the drag gesture progresses. Using the computed `indexPath` we can also retrieve the adjacent top and bottom cells to curve the appropriate corners. 
+For this to work, a pan gesture is attached to the collection view, and the cell that the user has their finger on when dragging is retrieved using the `indexPathForItem(at:)` and `cellForItem(at:)` methods. We perform a simple translation that follows the drag gesture on the focused cell, and also curve the corners and apply a drop shadow that gradually strengthens as the drag gesture progresses. Using the computed `indexPath` we can also retrieve the adjacent top and bottom cells to appropriately curve their corners. 
 
-For the close button, we only need to add it as a single subview to the view, and update the layout constraints upon dragging to make it appear as though it's attached to a particular cell. We also update the z-indices appropriately so that the layers make sense (dragging cell on top, close button in the middle, rest of collection view at the bottom).
+For the delete button, since it's purely cosmetic to indicate its action, we only need to add it as a single subview to the view rather than to each individual cell, and update the layout constraints upon dragging to make it appear as though it's attached to a particular cell. We also update the z-indices appropriately so that the layers make sense (dragging cell on top, close button in the middle, rest of collection view at the bottom).
 
 ## TODOs
 
