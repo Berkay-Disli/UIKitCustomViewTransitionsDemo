@@ -5,7 +5,7 @@ class ModalCardView: UIViewController, ViewControllerIdentifiable {
     var nameIdentifier: String = "Modal Card"
 
     var startX = CGFloat(0)
-    private let transitionAnimator = FBPaperTransitionAnimationController()
+    private let transitionAnimator = HomeTransitionAnimationController()
     private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
     
     override func viewDidLoad() {
@@ -65,7 +65,7 @@ extension ModalCardView: UINavigationControllerDelegate {
         if toVC is Self {
             transitionAnimator.transition = .push
             return transitionAnimator
-        } else if toVC is FBPaperHomeView, fromVC is Self {
+        } else if toVC is HomeView, fromVC is Self {
             transitionAnimator.transition = .pop
             return transitionAnimator
         }
@@ -105,7 +105,7 @@ extension ModalCardView: UIGestureRecognizerDelegate {
     }
 }
 
-extension ModalCardView: FBPaperTransitioning {
+extension ModalCardView: HomeTransitioning {
     var sharedView: UIView? {
         return UIView()
     }

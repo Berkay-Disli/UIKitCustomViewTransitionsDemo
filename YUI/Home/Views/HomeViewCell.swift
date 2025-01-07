@@ -1,6 +1,6 @@
 import UIKit
 
-class FBPaperHomeViewCell: UICollectionViewCell {
+class HomeViewCell: UICollectionViewCell {
     public let imageContainer = UIView()
     public let titleLabel = UILabel()
     

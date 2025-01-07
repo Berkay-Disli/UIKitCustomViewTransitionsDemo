@@ -1,6 +1,6 @@
 import UIKit
 
-class FBPaperHomeView: UIViewController {
+class HomeView: UIViewController {
     enum Constants {
         static let interItemSpacing: CGFloat = 1.5
         static let lineSpacing: CGFloat = 1.5
@@ -8,6 +8,7 @@ class FBPaperHomeView: UIViewController {
     }
     
     private var homeViews: [UIViewController] = [
+        TwitterSwipeGestureView(),
         TwitterSplashScreenView(),
         PathView(),
         ModalCardView(),
@@ -32,15 +33,15 @@ class FBPaperHomeView: UIViewController {
         frame: .zero,
         collectionViewLayout: layout
     ).then {
-        $0.register(FBPaperHomeViewCell.self,
-                    forCellWithReuseIdentifier: FBPaperHomeViewCell.identifier)
+        $0.register(HomeViewCell.self,
+                    forCellWithReuseIdentifier: HomeViewCell.identifier)
         $0.delegate = self
         $0.dataSource = self
         $0.delaysContentTouches = false
         $0.backgroundColor = .clear
     }
     
-    private let transitionAnimator = FBPaperTransitionAnimationController()
+    private let transitionAnimator = HomeTransitionAnimationController()
     public var selectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -355,7 +356,7 @@ class FBPaperHomeView: UIViewController {
     }
 }
 
-extension FBPaperHomeView: UIGestureRecognizerDelegate {
+extension HomeView: UIGestureRecognizerDelegate {
     func gestureRecognizer(
         _ gestureRecognizer: UIGestureRecognizer,
         shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
@@ -378,7 +379,7 @@ extension FBPaperHomeView: UIGestureRecognizerDelegate {
     }
 }
 
-extension FBPaperHomeView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int
     {
@@ -388,8 +389,8 @@ extension FBPaperHomeView: UICollectionViewDelegate, UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView,
                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FBPaperHomeViewCell.identifier,
-                                                      for: indexPath) as! FBPaperHomeViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewCell.identifier,
+                                                      for: indexPath) as! HomeViewCell
         
         guard let viewController = homeViews[indexPath.item] as? ViewControllerIdentifiable else { return cell }
         
@@ -431,7 +432,7 @@ extension FBPaperHomeView: UICollectionViewDelegate, UICollectionViewDataSource 
     }
 }
 
-extension FBPaperHomeView: UINavigationControllerDelegate {
+extension HomeView: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController,
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
@@ -450,17 +451,17 @@ extension FBPaperHomeView: UINavigationControllerDelegate {
     }
 }
 
-extension FBPaperHomeView {
+extension HomeView {
     // Hide home bar
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
 }
 
-extension FBPaperHomeView: FBPaperTransitioning {
+extension HomeView: HomeTransitioning {
     var sharedView: UIView? {
         guard let selectedIndexPath,
-              let cell = collectionView.cellForItem(at: selectedIndexPath) as? FBPaperHomeViewCell else
+              let cell = collectionView.cellForItem(at: selectedIndexPath) as? HomeViewCell else
         {
             return nil
         }

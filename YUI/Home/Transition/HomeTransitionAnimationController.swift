@@ -1,11 +1,11 @@
 import UIKit
 
-final class FBPaperTransitionAnimationController: NSObject {
+final class HomeTransitionAnimationController: NSObject {
     var transition: TransitionType = .push
     private var config: SharedTransitionConfig = .default
 }
 
-extension FBPaperTransitionAnimationController: UIViewControllerAnimatedTransitioning {
+extension HomeTransitionAnimationController: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         config.duration
     }
@@ -20,10 +20,10 @@ extension FBPaperTransitionAnimationController: UIViewControllerAnimatedTransiti
     }
 }
 
-extension FBPaperTransitionAnimationController {
+extension HomeTransitionAnimationController {
     private func pushAnimation(with context: UIViewControllerContextTransitioning) {
         guard let (fromView, fromSharedView, toView, _, fromVC, _) = setup(with: context),
-              let fromViewController = fromVC as? FBPaperHomeView else
+              let fromViewController = fromVC as? HomeView else
         {
             context.completeTransition(false)
             return
@@ -39,8 +39,8 @@ extension FBPaperTransitionAnimationController {
         let finalLayout = UICollectionViewFlowLayout().then {
             $0.scrollDirection = .horizontal
             $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH + 40)
-            $0.minimumLineSpacing = FBPaperHomeView.Constants.lineSpacing
-            $0.minimumInteritemSpacing = FBPaperHomeView.Constants.interItemSpacing
+            $0.minimumLineSpacing = HomeView.Constants.lineSpacing
+            $0.minimumInteritemSpacing = HomeView.Constants.interItemSpacing
         }
         
         let targetOffset = CGPoint(x: CGFloat(selectedIndexPath.item) * GlobalConstants.screenW, y: 0)
@@ -60,7 +60,7 @@ extension FBPaperTransitionAnimationController {
 
         // Update corner radius for all visible cells
         collectionView.visibleCells.forEach { cell in
-            let cell = cell as! FBPaperHomeViewCell
+            let cell = cell as! HomeViewCell
             cell.imageContainer.layer.cornerRadius = cell.imageContainer.layer.cornerRadius // Preserve current corner radius
         }
 
@@ -83,7 +83,7 @@ extension FBPaperTransitionAnimationController {
             
             // Animate corner radius for all visible cells
             collectionView.visibleCells.forEach { cell in
-                let cell = cell as! FBPaperHomeViewCell
+                let cell = cell as! HomeViewCell
                 cell.imageContainer.layer.cornerRadius = UIScreen.main.displayCornerRadius
                 cell.titleLabel.layer.opacity = 0
             }
@@ -97,9 +97,9 @@ extension FBPaperTransitionAnimationController {
         } completion: { _ in
             // Reset collectionView to original state
             collectionView.setCollectionViewLayout(fromViewController.layout, animated: false)
-            fromViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor + 40
+            fromViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * HomeView.Constants.scaleFactor + 40
             collectionView.visibleCells.forEach { cell in
-                let cell = cell as! FBPaperHomeViewCell
+                let cell = cell as! HomeViewCell
                 cell.imageContainer.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
                 cell.titleLabel.layer.opacity = 1
             }
@@ -111,7 +111,7 @@ extension FBPaperTransitionAnimationController {
     
     private func popAnimation(with context: UIViewControllerContextTransitioning) {
         guard let (fromView, _, toView, toSharedView, _, toVC) = setup(with: context),
-              let toViewController = toVC as? FBPaperHomeView  else
+              let toViewController = toVC as? HomeView  else
         {
             context.completeTransition(false)
             return
@@ -123,8 +123,8 @@ extension FBPaperTransitionAnimationController {
         let finalLayout = UICollectionViewFlowLayout().then {
             $0.scrollDirection = .horizontal
             $0.itemSize = CGSize(width: GlobalConstants.screenW, height: GlobalConstants.screenH + 40)
-            $0.minimumLineSpacing = FBPaperHomeView.Constants.lineSpacing
-            $0.minimumInteritemSpacing = FBPaperHomeView.Constants.interItemSpacing
+            $0.minimumLineSpacing = HomeView.Constants.lineSpacing
+            $0.minimumInteritemSpacing = HomeView.Constants.interItemSpacing
         }
 
         // Initially set full screen height
@@ -154,7 +154,7 @@ extension FBPaperTransitionAnimationController {
         
         // Now set the corner radius after the layout has been updated
         collectionView.visibleCells.forEach { cell in
-            let cell = cell as! FBPaperHomeViewCell
+            let cell = cell as! HomeViewCell
             cell.imageContainer.layer.cornerRadius = UIScreen.main.displayCornerRadius
         }
         
@@ -169,12 +169,12 @@ extension FBPaperTransitionAnimationController {
         {
             // Animate to final layout and height
             collectionView.setCollectionViewLayout(toViewController.layout, animated: true)
-            toViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * FBPaperHomeView.Constants.scaleFactor + 40
+            toViewController.collectionViewHeightConstraint?.constant = GlobalConstants.screenH * HomeView.Constants.scaleFactor + 40
             toView.layoutIfNeeded() // Force layout update for smooth height animation
             
             // Animate corner radius for all visible cells
             collectionView.visibleCells.forEach { cell in
-                let cell = cell as! FBPaperHomeViewCell
+                let cell = cell as! HomeViewCell
                 cell.imageContainer.layer.cornerRadius = max(0, UIScreen.main.displayCornerRadius - 32)
                 cell.titleLabel.layer.opacity = 1
             }

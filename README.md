@@ -127,6 +127,10 @@ This demo replicates the [neat clock tooltip](https://littlebigdetails.com/post/
 
 This demo replicates the [Twitter logo animation](https://iosdevtips.co/post/88481653818/twitter-ios-app-bird-zoom-animation) when launching the app from a cold boot. It uses a simple masking technique and 2-stage animation sequence to pull off – the first stage shrinks the bird down slightly, before expanding to reveal the app's contents, which also has a subtle shrinking animation, in the second stage.
 
+### Twitter swipe action demo
+
+This demo replicates the [swipe gestures](https://x.com/X/status/1859757879613587698) that Twitter recently introduced, allowing users to perform quick actions when swiping from the left or right on a tweet. For this to work, a pan gesture is attached to the entire gesture view, and the cell that the user has their finger on when dragging is retrieved using the `indexPathForItem(at:)` and `cellForItem(at:)` methods. We perform a simple translation that follows the drag gesture on the focused cell, and also curve the corners and apply a drop shadow that gradually strengthens as the drag gesture progresses. Using the computed `indexPath` we can also retrieve the adjacent top and bottom cells to curve the appropriate corners. For the close button, we only need to add it as a single subview to the view, and update the layout constraints upon dragging to make it appear as though it's attached to the cell. We also update the z-indices appropriately so that the layers make sense (dragging cell on top, close button in the middle, rest of collection view at the bottom).
+
 ## TODOs
 
 ### Facebook Paper transition demo
@@ -146,7 +150,7 @@ This demo replicates the [Twitter logo animation](https://iosdevtips.co/post/884
 ### [untitled] transition demo
 
 - [x] Implement [untitled] album transition with slide over
-- [ ] Adjust curves on interactive transition
+- [x] Adjust curves on interactive transition
 
 ### Path demo
 

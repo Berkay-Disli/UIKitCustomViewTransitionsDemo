@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         // Set the rootViewController
-        let vc = FBPaperHomeView()
+        let vc = HomeView()
         let nav = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = nav
     

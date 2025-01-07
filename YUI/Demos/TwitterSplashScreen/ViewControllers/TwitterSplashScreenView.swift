@@ -166,7 +166,7 @@ extension TwitterSplashScreenView: UIGestureRecognizerDelegate {
 }
 
 
-extension TwitterSplashScreenView: FBPaperTransitioning {
+extension TwitterSplashScreenView: HomeTransitioning {
     var sharedView: UIView? {
         return UIView()
     }

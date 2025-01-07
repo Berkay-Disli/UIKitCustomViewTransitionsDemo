@@ -4,7 +4,7 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
     var stringIdentifier: String = "PathView"
     var nameIdentifier: String = "Path"
     
-    private let transitionAnimator = FBPaperTransitionAnimationController()
+    private let transitionAnimator = HomeTransitionAnimationController()
     private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
     public var selectedIndexPath: IndexPath?
     
@@ -17,7 +17,8 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: view.safeAreaInsets.bottom + 120, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: view.safeAreaInsets.top, left: 0,
+                                           bottom: view.safeAreaInsets.bottom + 120, right: 0)
         return layout
     }()
     
@@ -54,7 +55,7 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
         collectionView.then {
             view.addSubview($0)
         }.layout {
-            $0.top == view.safeAreaLayoutGuide.topAnchor
+            $0.top == view.topAnchor
             $0.leading == view.leadingAnchor
             $0.trailing == view.trailingAnchor
             $0.bottom == view.bottomAnchor
@@ -82,7 +83,7 @@ final class PathView: UIViewController, ViewControllerIdentifiable {
             date = Calendar.current.date(byAdding: .second,
                                          value: Bool.random() ? Int.random(in: -24800...0) : Int.random(in: 0...46572),
                                          to: date) ?? Date()
-
+            
             // Convert to relative date
             let formatter = RelativeDateTimeFormatter()
             formatter.unitsStyle = .full
@@ -168,7 +169,7 @@ extension PathView {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         tooltipTimer?.invalidate()
-
+        
         UIView.animate(withDuration: 0.2) {
             self.clockTooltip.alpha = 1
             
@@ -234,12 +235,13 @@ extension PathView {
         
         // Calculate max distance tooltip can travel
         let bottomInset = view.safeAreaInsets.bottom + 120
-        let maxTooltipTravel = collectionView.bounds.height - bottomInset - clockTooltip.bounds.height
+        let topInset = view.safeAreaInsets.top
+        let maxTooltipTravel = collectionView.bounds.height - topInset - bottomInset - clockTooltip.bounds.height
         
         // Calculate normalized scroll progress (0 to 1)
         let contentHeight = collectionView.contentSize.height - collectionView.bounds.height
         let scrollProgress = min(max(collectionView.contentOffset.y / contentHeight, 0), 1)
-
+        
         // Translate tooltip to new position
         self.clockTooltip.transform = CGAffineTransform(
             translationX: -8,
@@ -251,9 +253,9 @@ extension PathView {
 extension PathView: UIGestureRecognizerDelegate {
     @objc func handlePan(_ recognizer: UIPanGestureRecognizer) {
         let contentOffsetY = collectionView.contentOffset.y
-
+        
         let window = UIApplication.keyWindow!
-
+        
         switch recognizer.state {
         case .began:
             let velocity = recognizer.velocity(in: window)
@@ -264,14 +266,14 @@ extension PathView: UIGestureRecognizerDelegate {
         case .changed, .ended:
             let horizontalVelocity = recognizer.velocity(in: window).x
             let verticalVelocity = recognizer.velocity(in: window).y
-
+            
             if horizontalVelocity > 500 && abs(horizontalVelocity) > abs(verticalVelocity)
             {
                 navigationController?.popViewController(animated: true)
             }
             
             collectionView.isScrollEnabled = true
-
+            
         default:
             collectionView.isScrollEnabled = true
         }
@@ -295,7 +297,7 @@ extension PathView: UINavigationControllerDelegate {
         if toVC is Self {
             transitionAnimator.transition = .push
             return transitionAnimator
-        } else if toVC is FBPaperHomeView, fromVC is Self {
+        } else if toVC is HomeView, fromVC is Self {
             transitionAnimator.transition = .pop
             return transitionAnimator
         }
@@ -303,7 +305,7 @@ extension PathView: UINavigationControllerDelegate {
     }
 }
 
-extension PathView: FBPaperTransitioning {
+extension PathView: HomeTransitioning {
     var sharedView: UIView? {
         return UIView()
     }

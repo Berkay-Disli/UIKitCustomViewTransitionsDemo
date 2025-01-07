@@ -13,7 +13,7 @@ final class UntitledGridView: UIViewController, ViewControllerIdentifiable {
     }
     
     private let transitionAnimator = UntitledTransitionAnimationController()
-    private let fbPaperTransitionAnimator = FBPaperTransitionAnimationController()
+    private let fbPaperTransitionAnimator = HomeTransitionAnimationController()
     private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
     private let header = UntitledGridViewHeader(title: "[untitled]")
     private var selectedIndexPath: IndexPath?
@@ -169,7 +169,7 @@ extension UntitledGridView: UINavigationControllerDelegate {
         } else if toVC is Self, fromVC is UntitledDetailView {
             transitionAnimator.transition = .pop
             return transitionAnimator
-        } else if toVC is FBPaperHomeView, fromVC is Self {
+        } else if toVC is HomeView, fromVC is Self {
             fbPaperTransitionAnimator.transition = .pop
             return fbPaperTransitionAnimator
         }
@@ -219,7 +219,7 @@ extension UntitledGridView: UIGestureRecognizerDelegate {
     }
 }
 
-extension UntitledGridView: SharedTransitioning, FBPaperTransitioning {
+extension UntitledGridView: SharedTransitioning, HomeTransitioning {
     var sharedFrame: CGRect {
         guard let selectedIndexPath,
               let cell = collectionView.cellForItem(at: selectedIndexPath),

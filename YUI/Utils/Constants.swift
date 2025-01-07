@@ -40,4 +40,6 @@ final class GlobalConstants {
         "yellowarchive95",
         "zer0_mem"
     ]
+    
+    static let colors: [UIColor] = [.red, .orange, .yellow, .green, .blue, .systemPink, .purple, .systemIndigo]
 }

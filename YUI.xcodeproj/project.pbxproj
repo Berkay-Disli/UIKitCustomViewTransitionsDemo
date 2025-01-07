@@ -47,12 +47,12 @@
 		8401BC3D2D1F6EAC0030CD27 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC3C2D1F6EAB0030CD27 /* TransitionType.swift */; };
 		8401BC3F2D1FBB230030CD27 /* [untitled]GridViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC3E2D1FBB1E0030CD27 /* [untitled]GridViewHeader.swift */; };
 		8401BC432D1FC7220030CD27 /* [untitled]DetailViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC422D1FC71E0030CD27 /* [untitled]DetailViewHeader.swift */; };
-		8401BC492D20FB550030CD27 /* FBPaperHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC482D20FB550030CD27 /* FBPaperHomeView.swift */; };
-		8401BC4B2D20FBC80030CD27 /* FBPaperPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC4A2D20FBC80030CD27 /* FBPaperPageView.swift */; };
-		8401BC4D2D20FBF40030CD27 /* FBPaperHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC4C2D20FBF40030CD27 /* FBPaperHomeViewCell.swift */; };
-		8401BC522D2102F80030CD27 /* FBPaperTransitionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC502D2102F80030CD27 /* FBPaperTransitionAnimationController.swift */; };
-		8401BC552D2120990030CD27 /* FBPaperTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */; };
+		8401BC492D20FB550030CD27 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC482D20FB550030CD27 /* HomeView.swift */; };
+		8401BC4D2D20FBF40030CD27 /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC4C2D20FBF40030CD27 /* HomeViewCell.swift */; };
+		8401BC522D2102F80030CD27 /* HomeTransitionAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC502D2102F80030CD27 /* HomeTransitionAnimationController.swift */; };
+		8401BC552D2120990030CD27 /* HomeTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC542D2120950030CD27 /* HomeTransitioning.swift */; };
 		8401BC572D2201F90030CD27 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8401BC562D2201F00030CD27 /* BackButton.swift */; };
+		8411D1742D2D20DC00CE246C /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8411D1732D2D20D800CE246C /* RandomColor.swift */; };
 		84C4B0E12D24BBBA00F76C86 /* ViewControllerIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E02D24BBB700F76C86 /* ViewControllerIdentifiable.swift */; };
 		84C4B0E52D24D45200F76C86 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */; };
 		84C4B0EF2D24FDF500F76C86 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0EE2D24FDF500F76C86 /* PathView.swift */; };
@@ -62,6 +62,9 @@
 		84C4B0FA2D27637200F76C86 /* PathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0F92D27636C00F76C86 /* PathCell.swift */; };
 		84C4B0FC2D2763B900F76C86 /* PathClockTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0FB2D2763B900F76C86 /* PathClockTooltip.swift */; };
 		84C4B0FE2D292DD500F76C86 /* TwitterSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B0FD2D292DD400F76C86 /* TwitterSplashScreenView.swift */; };
+		84C4B1032D2CBB8900F76C86 /* DemoTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B1022D2CBB8000F76C86 /* DemoTemplate.swift */; };
+		84C4B1052D2CBBE400F76C86 /* TwitterSwipeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B1042D2CBBE400F76C86 /* TwitterSwipeGestureView.swift */; };
+		84C4B1082D2CBD3B00F76C86 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B1072D2CBD3700F76C86 /* TweetCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,12 +111,12 @@
 		8401BC3C2D1F6EAB0030CD27 /* TransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
 		8401BC3E2D1FBB1E0030CD27 /* [untitled]GridViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[untitled]GridViewHeader.swift"; sourceTree = "<group>"; };
 		8401BC422D1FC71E0030CD27 /* [untitled]DetailViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[untitled]DetailViewHeader.swift"; sourceTree = "<group>"; };
-		8401BC482D20FB550030CD27 /* FBPaperHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperHomeView.swift; sourceTree = "<group>"; };
-		8401BC4A2D20FBC80030CD27 /* FBPaperPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperPageView.swift; sourceTree = "<group>"; };
-		8401BC4C2D20FBF40030CD27 /* FBPaperHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperHomeViewCell.swift; sourceTree = "<group>"; };
-		8401BC502D2102F80030CD27 /* FBPaperTransitionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperTransitionAnimationController.swift; sourceTree = "<group>"; };
-		8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPaperTransitioning.swift; sourceTree = "<group>"; };
+		8401BC482D20FB550030CD27 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8401BC4C2D20FBF40030CD27 /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
+		8401BC502D2102F80030CD27 /* HomeTransitionAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTransitionAnimationController.swift; sourceTree = "<group>"; };
+		8401BC542D2120950030CD27 /* HomeTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTransitioning.swift; sourceTree = "<group>"; };
 		8401BC562D2201F00030CD27 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		8411D1732D2D20D800CE246C /* RandomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		84C4B0E02D24BBB700F76C86 /* ViewControllerIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerIdentifiable.swift; sourceTree = "<group>"; };
 		84C4B0E42D24D44F00F76C86 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		84C4B0EE2D24FDF500F76C86 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
@@ -123,6 +126,9 @@
 		84C4B0F92D27636C00F76C86 /* PathCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCell.swift; sourceTree = "<group>"; };
 		84C4B0FB2D2763B900F76C86 /* PathClockTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathClockTooltip.swift; sourceTree = "<group>"; };
 		84C4B0FD2D292DD400F76C86 /* TwitterSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSplashScreenView.swift; sourceTree = "<group>"; };
+		84C4B1022D2CBB8000F76C86 /* DemoTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTemplate.swift; sourceTree = "<group>"; };
+		84C4B1042D2CBBE400F76C86 /* TwitterSwipeGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSwipeGestureView.swift; sourceTree = "<group>"; };
+		84C4B1072D2CBD3700F76C86 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,7 @@
 				8401BBF22D1F3BFA0030CD27 /* Utils */,
 				8401BC062D1F3BFA0030CD27 /* Views */,
 				8401BBFD2D1F3BFA0030CD27 /* Transition */,
+				8401BC442D20F7510030CD27 /* Home */,
 				84C4B0EB2D24FDB100F76C86 /* Demos */,
 			);
 			path = YUI;
@@ -198,6 +205,7 @@
 				8401BBEF2D1F3BFA0030CD27 /* CGRect+Extensions.swift */,
 				8401BBF02D1F3BFA0030CD27 /* CGSize+Extensions.swift */,
 				8401BBF12D1F3BFA0030CD27 /* PHAsset+Extensions.swift */,
+				8411D1732D2D20D800CE246C /* RandomColor.swift */,
 				8401BBE82D1F3BFA0030CD27 /* Then.swift */,
 				84C4B0E02D24BBB700F76C86 /* ViewControllerIdentifiable.swift */,
 			);
@@ -308,20 +316,20 @@
 			path = "[untitled]";
 			sourceTree = "<group>";
 		};
-		8401BC442D20F7510030CD27 /* FBPaper */ = {
+		8401BC442D20F7510030CD27 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				8401BC462D20F7620030CD27 /* Transition */,
 				8401BC452D20F75D0030CD27 /* Views */,
 				8401BC472D20F7650030CD27 /* ViewControllers */,
 			);
-			path = FBPaper;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		8401BC452D20F75D0030CD27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8401BC4C2D20FBF40030CD27 /* FBPaperHomeViewCell.swift */,
+				8401BC4C2D20FBF40030CD27 /* HomeViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,8 +337,8 @@
 		8401BC462D20F7620030CD27 /* Transition */ = {
 			isa = PBXGroup;
 			children = (
-				8401BC542D2120950030CD27 /* FBPaperTransitioning.swift */,
-				8401BC502D2102F80030CD27 /* FBPaperTransitionAnimationController.swift */,
+				8401BC542D2120950030CD27 /* HomeTransitioning.swift */,
+				8401BC502D2102F80030CD27 /* HomeTransitionAnimationController.swift */,
 			);
 			path = Transition;
 			sourceTree = "<group>";
@@ -338,8 +346,7 @@
 		8401BC472D20F7650030CD27 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8401BC482D20FB550030CD27 /* FBPaperHomeView.swift */,
-				8401BC4A2D20FBC80030CD27 /* FBPaperPageView.swift */,
+				8401BC482D20FB550030CD27 /* HomeView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -356,12 +363,13 @@
 		84C4B0EB2D24FDB100F76C86 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
-				84C4B0FF2D292DD700F76C86 /* Twitter */,
-				84C4B0F02D2583E500F76C86 /* ModalCard */,
-				8401BC402D1FBB930030CD27 /* Instagram */,
-				8401BC412D1FBB9B0030CD27 /* [untitled] */,
+				84C4B1012D2CBB6900F76C86 /* TwitterSwipeGesture */,
+				84C4B0FF2D292DD700F76C86 /* TwitterSplashScreen */,
 				84C4B0EA2D24FD4700F76C86 /* Path */,
-				8401BC442D20F7510030CD27 /* FBPaper */,
+				84C4B0F02D2583E500F76C86 /* ModalCard */,
+				8401BC412D1FBB9B0030CD27 /* [untitled] */,
+				8401BC402D1FBB930030CD27 /* Instagram */,
+				84C4B1022D2CBB8000F76C86 /* DemoTemplate.swift */,
 			);
 			path = Demos;
 			sourceTree = "<group>";
@@ -408,12 +416,12 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		84C4B0FF2D292DD700F76C86 /* Twitter */ = {
+		84C4B0FF2D292DD700F76C86 /* TwitterSplashScreen */ = {
 			isa = PBXGroup;
 			children = (
 				84C4B1002D292DE200F76C86 /* ViewControllers */,
 			);
-			path = Twitter;
+			path = TwitterSplashScreen;
 			sourceTree = "<group>";
 		};
 		84C4B1002D292DE200F76C86 /* ViewControllers */ = {
@@ -422,6 +430,31 @@
 				84C4B0FD2D292DD400F76C86 /* TwitterSplashScreenView.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84C4B1012D2CBB6900F76C86 /* TwitterSwipeGesture */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B1092D2CBD3D00F76C86 /* Views */,
+				84C4B1062D2CBC1A00F76C86 /* ViewControllers */,
+			);
+			path = TwitterSwipeGesture;
+			sourceTree = "<group>";
+		};
+		84C4B1062D2CBC1A00F76C86 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B1042D2CBBE400F76C86 /* TwitterSwipeGestureView.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84C4B1092D2CBD3D00F76C86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84C4B1072D2CBD3700F76C86 /* TweetCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,12 +533,14 @@
 				8401BBDC2D1F39520030CD27 /* AppDelegate.swift in Sources */,
 				8401BC072D1F3BFA0030CD27 /* LayoutProperty.swift in Sources */,
 				8401BC082D1F3BFA0030CD27 /* PhotoDetailViewHeader.swift in Sources */,
+				84C4B1052D2CBBE400F76C86 /* TwitterSwipeGestureView.swift in Sources */,
 				8401BC092D1F3BFA0030CD27 /* PhotoHeader.swift in Sources */,
+				84C4B1032D2CBB8900F76C86 /* DemoTemplate.swift in Sources */,
 				8401BC0B2D1F3BFA0030CD27 /* LayoutClosure.swift in Sources */,
 				8401BC0C2D1F3BFA0030CD27 /* UIApplication+Extensions.swift in Sources */,
 				84C4B0FA2D27637200F76C86 /* PathCell.swift in Sources */,
 				8401BC0D2D1F3BFA0030CD27 /* LayoutDimension.swift in Sources */,
-				8401BC522D2102F80030CD27 /* FBPaperTransitionAnimationController.swift in Sources */,
+				8401BC522D2102F80030CD27 /* HomeTransitionAnimationController.swift in Sources */,
 				8401BC0E2D1F3BFA0030CD27 /* SharedTransitionAnimationController.swift in Sources */,
 				8401BC0F2D1F3BFA0030CD27 /* Then.swift in Sources */,
 				8401BC102D1F3BFA0030CD27 /* LayoutSizeDimension.swift in Sources */,
@@ -515,6 +550,7 @@
 				8401BC122D1F3BFA0030CD27 /* CGAffineTransform+Extensions.swift in Sources */,
 				8401BC132D1F3BFA0030CD27 /* SharedTransitionInteractionController.swift in Sources */,
 				8401BC142D1F3BFA0030CD27 /* LayoutOperators.swift in Sources */,
+				8411D1742D2D20DC00CE246C /* RandomColor.swift in Sources */,
 				8401BC152D1F3BFA0030CD27 /* PHAsset+Extensions.swift in Sources */,
 				8401BC162D1F3BFA0030CD27 /* PhotoGridView.swift in Sources */,
 				84C4B0E12D24BBBA00F76C86 /* ViewControllerIdentifiable.swift in Sources */,
@@ -525,7 +561,7 @@
 				84C4B0F42D25842000F76C86 /* Constants.swift in Sources */,
 				8401BC182D1F3BFA0030CD27 /* CacheableImageView.swift in Sources */,
 				8401BC1A2D1F3BFA0030CD27 /* UICollectionReusableView+Extensions.swift in Sources */,
-				8401BC492D20FB550030CD27 /* FBPaperHomeView.swift in Sources */,
+				8401BC492D20FB550030CD27 /* HomeView.swift in Sources */,
 				84C4B0FE2D292DD500F76C86 /* TwitterSplashScreenView.swift in Sources */,
 				8401BC1B2D1F3BFA0030CD27 /* PhotoFooter.swift in Sources */,
 				8401BC362D1F63DF0030CD27 /* [untitled]TransitionAnimationController.swift in Sources */,
@@ -540,13 +576,13 @@
 				84C4B0EF2D24FDF500F76C86 /* PathView.swift in Sources */,
 				84C4B0F82D25874600F76C86 /* ModalCardView.swift in Sources */,
 				8401BC212D1F3BFA0030CD27 /* SharedTransitioning.swift in Sources */,
-				8401BC4B2D20FBC80030CD27 /* FBPaperPageView.swift in Sources */,
 				8401BC222D1F3BFA0030CD27 /* UIView+Extensions.swift in Sources */,
+				84C4B1082D2CBD3B00F76C86 /* TweetCell.swift in Sources */,
 				8401BC232D1F3BFA0030CD27 /* LayoutAnchor.swift in Sources */,
 				8401BC242D1F3BFA0030CD27 /* UIView+Fill.swift in Sources */,
-				8401BC4D2D20FBF40030CD27 /* FBPaperHomeViewCell.swift in Sources */,
+				8401BC4D2D20FBF40030CD27 /* HomeViewCell.swift in Sources */,
 				8401BC432D1FC7220030CD27 /* [untitled]DetailViewHeader.swift in Sources */,
-				8401BC552D2120990030CD27 /* FBPaperTransitioning.swift in Sources */,
+				8401BC552D2120990030CD27 /* HomeTransitioning.swift in Sources */,
 				8401BC252D1F3BFA0030CD27 /* ImageCache.swift in Sources */,
 				8401BC262D1F3BFA0030CD27 /* PhotoCell.swift in Sources */,
 				8401BBDD2D1F39520030CD27 /* SceneDelegate.swift in Sources */,

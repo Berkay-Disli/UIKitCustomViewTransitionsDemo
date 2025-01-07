@@ -1,6 +1,6 @@
 import UIKit
 
-protocol FBPaperTransitioning {
+protocol HomeTransitioning {
     var sharedView: UIView? { get }
 }
 
@@ -10,7 +10,7 @@ extension UIViewControllerContextTransitioning {
         let viewController = viewController(forKey: key)
         viewController?.view.layoutIfNeeded()
                 
-        let sharedView = (viewController as? FBPaperTransitioning)?.sharedView
+        let sharedView = (viewController as? HomeTransitioning)?.sharedView
         return sharedView
     }
 }

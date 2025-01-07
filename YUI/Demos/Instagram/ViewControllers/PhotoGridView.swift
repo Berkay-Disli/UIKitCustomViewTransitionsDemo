@@ -18,7 +18,7 @@ final class PhotoGridView: UIViewController, ViewControllerIdentifiable {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Int, PHAsset>
     
     private let transitionAnimator = SharedTransitionAnimationController()
-    private let fbPaperTransitionAnimator = FBPaperTransitionAnimationController()
+    private let fbPaperTransitionAnimator = HomeTransitionAnimationController()
     private lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
     private let header = PhotoGridViewHeader(title: "Photos")
     
@@ -281,7 +281,7 @@ extension PhotoGridView: UINavigationControllerDelegate {
         } else if toVC is Self, fromVC is PhotoDetailView {
             transitionAnimator.transition = .pop
             return transitionAnimator
-        } else if toVC is FBPaperHomeView, fromVC is Self {
+        } else if toVC is HomeView, fromVC is Self {
             fbPaperTransitionAnimator.transition = .pop
             return fbPaperTransitionAnimator
         }
@@ -383,7 +383,7 @@ extension PhotoGridView: PHPhotoLibraryChangeObserver {
     }
 }
 
-extension PhotoGridView: FBPaperTransitioning {
+extension PhotoGridView: HomeTransitioning {
     var sharedView: UIView? {
         return UIView()
     }
