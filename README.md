@@ -6,13 +6,13 @@ A gallery of various demos built with UIKit, demonstrating fluid, interactive tr
 
 ## Motivation
 
-SwiftUI is great for building out interfaces and apps quickly, but at the expense of feeling very similar amongst one another – standard controls, list views, toggles get tiring just as quickly... and surface-level design, no matter how polished, can only get you so far.
+SwiftUI is great for building out interfaces and apps quickly, but at the expense of feeling very similar amongst one another – the standard controls, list views and toggles get tiring just as quickly... and static, surface-level design, no matter how polished, can only get you so far.
 
-In my opinion, what sets apart a good app from a great one (amongst other things) is the use of fluid, interactive transitions when navigating between screens or presenting modals and the like. Whether it's gesture-driven (e.g. pinching to expand or dismiss entries in [Dot](https://new.computer/)) or using a shared, interruptible model (e.g. going between a post and its detail view [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
+In my opinion, what sets apart a good app from a great one (amongst other things) is the use of fluid, interactive transitions when navigating between screens or presenting information. Whether it's gesture-driven (e.g. pinching to expand or dismiss entries in [Dot](https://new.computer/)) or using a shared, interruptible model (e.g. going between a post and its detail view in [Instagram](https://instagram.com)), such transitions really elevate the UX of an app.
 
-Apart from that, novel user interfaces like the ones from [Path](https://brianlovin.com/app-dissection/path-ios) or [Mailbox](https://www.youtube.com/watch?v=FG-h8pDXfoE) also go a long way in making an app feel less box-standard than what's on the App Store nowadays. Transient pop-ups that sync with some state like scroll position, custom swipe actions whose buttons fan out in some elegant way... these add surprise and delight, and leave you wondering how they were made. Some might argue that these apps feel antiquated or less native-feeling as a result of these bespoke interfaces, but that was the beauty of apps in the pre-iOS 7 era, where each app could shine with their own personalities. We have much to learn from their "antiquated-ness".
+Apart from that, novel user interfaces like the ones from [Path](https://brianlovin.com/app-dissection/path-ios) or [Mailbox](https://www.youtube.com/watch?v=FG-h8pDXfoE) also go a long way in making an app feel less box-standard than what's on the App Store nowadays. Transient pop-ups that sync with some state like scroll position, custom swipe actions whose buttons fan out in some elegant way... these add surprise and delight, and leave you wondering how they were made. Some might argue that these apps feel antiquated or less native-feeling as a result of these bespoke approaches, but that was the beauty of apps in the pre-iOS 7 era, where each app could shine with their own personalities. We have much to learn from their "antiquated-ness".
 
-This repo thus aims to study, replicate and build upon such transitions and interfaces, and serve as a reference for anyone who may be interested in learning and implementing these for themselves.
+This repo therefore aims to study, replicate and build upon such transitions and interfaces, and serve as a reference for anyone interested in learning and implementing these for themselves.
 
 > [!NOTE]
 > In particular, for custom view transitions, there are many parts that go into creating them (some boilerplate, some actual code), so I think the best way to learn and eventually implement them is to sit down and read through the documentation and [articles](#Resources) that exist on this topic, and to play around with example code. It might take a few days, or even weeks (as it will for me) to really understand the necessary protocols, delegates and methods that go into creating custom transitions, so I recommend being patient and working through them step by step.
@@ -24,13 +24,16 @@ These are the main ingredients that go into implementing custom, interactive tra
 - `UIViewControllerTransitioningDelegate`: tells the system that you want to supply custom transitions for view controller **presentations** and **dismissals** (like sheets, modals, etc.).
 - `UINavigationControllerDelegate`: tells the system that you want to supply custom transitions for view controller **pushes** and **pops** (like going between a grid view and a detail view).
 - `UIViewControllerAnimatedTransitioning`: think of this as an **animation controller**. During transitions, UIKit will call our animation controller with the necessary context, allowing us to execute our custom animations instead of the default ones.
-- `UIViewControllerInteractiveTransitioning`: think of this as an **interactive animation controller**. If implemented alongside `UIViewControllerAnimatedTransitioning` and configured appropriately, this will enable interruptible transitions that work alongside the custom, non-interactive animations.
+- `UIViewControllerInteractiveTransitioning`: think of this as an **interactive animation controller**. If implemented alongside `UIViewControllerAnimatedTransitioning` and configured appropriately, this will enable interactive transitions that work alongside the custom, non-interactive animations.
 - `UIPercentDrivenInteractiveTransition`: an object that drives an interactive transition. This enables gesture-driven navigations like swiping to go back. The default implementation utilizes the existing custom transition defined in `UIViewControllerAnimatedTransitioning`.
 - `UIViewControllerContextTransitioning`: passed as a parameter to the required methods of `UIViewControllerAnimatedTransitioning`, this context contains information about both the presenting and presented view controller, and (if extended and conformed to by our view controllers) can hold other information that is useful for our custom transitions.
 
+> [!NOTE]
+> Interruptible transitions (meaning the ability to stop an animation mid-flight) are different from interactive transitions. The latter entails being able to start and scrub through a transition (like the usual swipe to go back on iOS), but once it is "engaged", there is no way to "grab" the animation mid-way to stop or cancel it until it's finished. The former is something that I'm still studying and looking into.
+
 ## `UIViewControllerAnimatedTransitioning`
 
-This is the main protocol in UIKit that allows you to create custom transitions between view controllers. In other words, it contains the logic for the animation (interactive or not) that occurs during the transition. It has two required methods to implement:
+This is the main protocol in UIKit that allows you to create custom transitions between view controllers. In other words, it will house the logic for the animation (interactive or not) that occurs during the transition. It has two required methods to implement:
 
 1. `transitionDuration(using:)` returns the duration of the entire transition animation
 2. `animateTransition(using:)` is where you define the actual animation sequence(s) which will be executed during the transition
@@ -82,20 +85,17 @@ If the transition logic is tightly coupled with the view controllers' internal s
 
 This section provides light documentation of the demos implemented in the project, in terms of the techniques and approaches used.
 
-### Facebook Paper transition demo
+### Home view
 
-This demo/view serves as the main hub for all the other demos, and is what you see when you first open the app. It aims to replicate the expanding and shrinking transition of stories. A horizontally scrolling `UICollectionView` with a constrained height is used, and the cells contained within are all scaled down by `0.4` with respect to the device's screen size. 
+This view serves as the main hub for all the other demos, and is what you see when you first open the app. It aims to replicate the expanding and shrinking transition of stories as seen in Facebook Paper, as well as the "slide down to reveal settings" gesture (though I'd like to build a separate, more comprehensive demo of Paper later on). A horizontally scrolling `UICollectionView` with a constrained height is used, and the cells contained within are all scaled down by `0.4` with respect to the device's screen size. 
 
 During the transition, we map the destination view to the cell that was selected both in terms of size and position, and from there we animate the growth of both the cell and destination view in tandem to fill up the screen, also adjusting the `contentOffset` of the collection view as the transition progresses so that it aligns perfectly to the center of the screen.
 
-For more details on how this is achieved, look at `FBPaperTransitionAnimationController.swift`, specifically the `pushAnimation()` and `popAnimation()` methods.
-
-> [!NOTE]
-> The current implementation leaves out the interactive drag gesture, which will be worked on in the near future.
+For more details on how this is achieved, look at `HomeTransitionAnimationController.swift`, specifically the `pushAnimation()` and `popAnimation()` methods.
 
 ### Instagram transition demo
 
-This demo replicates the transition behavior when going from a post on a profile to the detailed post view, where the image appears to expand into the new screen. It utilizes a custom transition and transformations to pull off – please see the detailed comments in `CGAffineTransform+Extensions.swift` for more info on this, in particular the following methods:
+This demo replicates the transition behavior when going from a post on a profile to the detailed post view, where the image appears to expand into the new screen. It utilizes many custom transformations to pull off – please see the detailed comments in `CGAffineTransform+Extensions.swift` for more info on this, in particular the following methods:
 
 ```swift
 static func transform(parent: CGRect,
@@ -107,11 +107,13 @@ static func transform(parent: CGRect,
                       aspectFills targetRect: CGRect) -> Self { ... }
 ```
 
-Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination view appears to grow to take up the entire screen, via manipulation of the mask.
+Essentially, when the transition begins, we crop the destination view to match the image's frame in the grid using a mask, and position it atop the image in the grid. Then, as the transition progresses, the destination view appears to grow to take up the entire screen, via manipulation of the mask. It builds upon the work done in [this excellent article](https://medium.com/supercharges-mobile-product-guide/replicating-instagrams-shared-transition-on-ios-uikit-part-i-144a26c31353), which was vital in understanding how the transition worked in the first place.
 
 ### [untitled] transition demo
 
-It is crucial that the `sharedView` that both view controllers implement as part of the `SharedTransitioning` protocol are **copies** instead of references, since it becomes **much easier** to reason about and manipulate them for our custom transitions. Otherwise, we would have to involve convoluted logic to manage and restore states before, during and after the transition. With copies, we can easily create and destroy them on demand with little overhead. 
+This demo builds on the user interface of [untitled] by having the album covers transition from the grid view to the detail view with continuity.
+
+While working on this demo, I realized that it is crucial that the `sharedView` that both view controllers implement as part of the `SharedTransitioning` protocol are **copies** instead of references, since it becomes **much easier** to reason about and manipulate them for our custom transitions. Otherwise, we would have to involve convoluted logic to manage and restore states before, during and after the transition. With copies, we can easily create and destroy them on demand with little overhead. 
 
 The only caveat is if the view is complex, this operation might take much longer. The alternative is to manipulate the source and destination views themselves using clever tricks like masks, as is the case with the Instagram transition demo.
 

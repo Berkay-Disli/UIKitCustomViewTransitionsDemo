@@ -1,6 +1,6 @@
 import UIKit
 
-class BackButton: UIButton {
+final class BackButton: UIButton {
     private let buttonSize: CGFloat = 52
     private let customTintColor: UIColor
     private let blurStyle: UIBlurEffect.Style
@@ -46,18 +46,15 @@ class BackButton: UIButton {
             addSubview($0)
             fillWith($0)
         }
-        
-        blurView.contentView.addSubview(chevronImageView)
+
         chevronImageView.then {
-            $0.translatesAutoresizingMaskIntoConstraints = false
+            blurView.contentView.addSubview($0)
         }.layout {
             $0.centerX == blurView.centerXAnchor
             $0.centerY == blurView.centerYAnchor
         }
         
-        then {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }.layout {
+        layout {
             $0.size == CGSize(width: buttonSize, height: buttonSize)
         }
     }
