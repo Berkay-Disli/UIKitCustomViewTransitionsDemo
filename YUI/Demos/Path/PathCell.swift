@@ -18,7 +18,7 @@ struct PathItem {
 final class PathItemCell: UICollectionViewCell {
     private let avatarView: UIView = {
         let avatarView = UIView()
-        avatarView.backgroundColor = getRandomColor()
+        avatarView.backgroundColor = getRandomColor(withHueRange: 0.0...0.1)
         avatarView.contentMode = .scaleAspectFill
         avatarView.clipsToBounds = true
         avatarView.layer.cornerRadius = 20

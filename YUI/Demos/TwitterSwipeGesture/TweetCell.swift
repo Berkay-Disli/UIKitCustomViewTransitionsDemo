@@ -141,7 +141,7 @@ final class TweetCell: UICollectionViewCell {
         usernameLabel.text = item.username
         dateLabel.text = item.relativeDate
         descriptionLabel.text = item.description
-        profileImageView.backgroundColor = getRandomColor()
+        profileImageView.backgroundColor = getRandomColor(withHueRange: 0.6...0.7)
         
         setNeedsLayout()
     }
